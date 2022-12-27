@@ -1,0 +1,23 @@
+@use 'src/styles/vars' as v;
+
+.app {
+  background-color: v.$color-app-container;
+
+  &-title{
+    text-align: center;
+    font-size: v.$font-title;
+    color:v.$color-title;
+    background-color: v.$color-background-title;
+    padding: v.$gutter;
+  }
+
+  &-container{
+    width: 90vw;
+    border-radius: v.$round;
+    margin: v.$gutter*2 auto;
+    background-color: v.$color-background;
+    padding: v.$gutter;
+    display: flex;
+    justify-content: space-between;
+  }
+}
