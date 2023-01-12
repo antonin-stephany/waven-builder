@@ -1,82 +1,70 @@
-import React, { useContext, useReducer } from 'react';
+import React, { useState } from 'react';
 //import PropTypes from 'prop-types';
 import './Info.scss';
-
 import DropDown from '../DropDown/DropDown';
-
-//import useCharacterReducer, { actionSetField } from '../../hooks/useCharacterReducer';
-
 import classes from '../../data/classes';
+import { useDispatch } from 'react-redux';
+import { actionSaveBuild } from '../../actions/characterActions'
 
-import CharacterContext from '../../contexts/CharactersContext';
-
-const SET_FIELD = 'SET_FIELD';
-const actionSetField = (name, value) => ({ type: SET_FIELD, payload: { name, value } });
-
-
-const characterInitialState = {
-  title: '',
-  classes: classes[0].value,
-  hero: 'test',
-  level: 1,
-
-};
-
-function characterReducer(state, action) {
-  switch (action.type) {
-    case SET_FIELD: {
-      return {
-        ...state,
-        [action.payload.name]: action.payload.value,
-      };
-    }
-    default: {
-      throw new Error('action not recognized');
-    }
-  }
-}
-
-function useCharacterReducer() {
-  const [state, dispatch] = useReducer(characterReducer, characterInitialState);
-
-  return [state, dispatch];
-}
 
 function Info() {
-    const { addCharacter } = useContext(CharacterContext);
-    const [state, dispatch] = useCharacterReducer();
-  
+    const [inputTitle, setInputTitle] = useState('');
+    const [inputLevel, setInputLevel] = useState(1);
+    const [inputClass, setInputClass] = useState(classes[0].value);
+    const [labelHero, setLabelHero] = useState(0);
+    const [inputHero, setInputHero] = useState(classes[0].heros[0].value);
+    const dispatch = useDispatch();
     const handleSubmit = (e) => {
-      e.preventDefault();
-      addCharacter(state);
-    };
+        e.preventDefault();
+        if (!inputTitle.trim()) {
+          return; 
+          // pour ne pas envoyer le build si c'est vide.
+        }
+        dispatch(
+          actionSaveBuild(inputTitle, inputLevel, inputClass, inputHero),
+        );
+
+      };
+      const handleOnchangeClass = (e) =>  {
+        //met à joru le state Classe
+        setInputClass(e.target.value);
+        //trouve l'index de la classe qui correspond à l'element selectionné et le met dans le state
+        setLabelHero(classes.findIndex(element => element.value === e.target.value));
+        //change la valeur de l'hero par défaut 
+        setInputHero(classes[labelHero].heros[0].value);
+
+      }
     return (
         <form className="info" onSubmit={handleSubmit}>
             <input 
                 type="text" 
                 placeholder="Nom du build" 
                 className="title"  
-                value={state.title}
-                onChange={(e) => dispatch(actionSetField('title', e.target.value))}
+                value={inputTitle}
+                onChange={(e) => setInputTitle(e.target.value)}
             />
             <div className="icon-class">
 
             </div>
             <div className="class-level-container">
                 <DropDown 
-                    value={state.classes}
-                    onChange={(value) => dispatch(actionSetField('classes', value))}
+                    value={inputClass}
+                    onChange={handleOnchangeClass}
                     options={classes} 
                 />
-                <select className="hero" >
-                    <option value="test">test</option>
-                </select>
+                <DropDown 
+                    value={inputHero}
+                    onChange={(e) => setInputHero(e.target.value)}
+                    options={classes[labelHero].heros} 
+                />
                 <input 
                 type="number" 
                 placeholder="Level" 
-                className="level"  
-                value={state.level}
-                onChange={(e) => dispatch(actionSetField('level', e.target.value))} 
+                className="level" 
+                min="1"
+                max="100" 
+                value={inputLevel}
+                onChange={(e) => setInputLevel(e.target.value)}
                 />
                
             </div>

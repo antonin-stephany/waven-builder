@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles/index.scss';
+import { Provider } from 'react-redux';
 import App from './components/App/App';
-import { CharacterContextProvider } from './contexts/CharactersContext';
+import store from './store/store';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <CharacterContextProvider>
+  <Provider store={store}>
     <App />
-  </CharacterContextProvider>,
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

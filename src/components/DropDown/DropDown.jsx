@@ -13,7 +13,7 @@ function Dropdown({
       {label}
       <select
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={onChange}
         {...rest}
       >
         {options.map(({ label: optLabel, value: optValue, ...optRest }) => (
