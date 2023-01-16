@@ -1,7 +1,7 @@
 
 export const SAVE_BUILD = 'SAVE_BUILD';
 export const SET_LEVEL = 'SET_LEVEL';
-export const SET_CLASS = 'SET_CLASS';
+//export const SET_CLASS = 'SET_CLASS';
 
 export function actionSaveBuild(inputTitle, level, classes, inputHero) {
   return {
@@ -16,10 +16,11 @@ export function actionSetLevel(level) {
     payload: level,
   };
 }
-
+/**
 export function actionSetClass(classes) {
   return {
     type: SET_LEVEL,
     payload: classes,
   };
 }
+ */

@@ -4,7 +4,7 @@ import './Info.scss';
 import DropDown from '../DropDown/DropDown';
 import dataCharacter from '../../data/classes';
 import { useDispatch, useSelector } from 'react-redux';
-import { actionSaveBuild, actionSetLevel, actionSetClass } from '../../actions/characterActions'
+import { actionSaveBuild, actionSetLevel } from '../../actions/characterActions'
 
 
 function Info() {
