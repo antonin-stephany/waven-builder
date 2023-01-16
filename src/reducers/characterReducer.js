@@ -1,4 +1,4 @@
-import { SAVE_BUILD, SET_LEVEL } from '../actions/characterActions';
+import { SAVE_BUILD, SET_CLASS, SET_LEVEL, SET_HERO } from '../actions/characterActions';
 import classes from '../data/classes';
 
 export const initialState = {
@@ -14,10 +14,8 @@ function characterReducer(state = initialState, action = {}){ // <===
     switch(action.type){
         case SAVE_BUILD: {
             return {
-                title: action.payload.inputTitle,
-                level: action.payload.inputLevel,
-                classes: action.payload.inputClass,
-                hero: action.payload.inputHero,
+                ...state,
+                title: action.payload,
             };
         }
         case SET_LEVEL: {
@@ -26,14 +24,18 @@ function characterReducer(state = initialState, action = {}){ // <===
                 level: action.payload,
             }
         }
-        /** 
         case SET_CLASS: {
             return {
                 ...state,
                 classes: action.payload,
             }
         }
-        */
+        case SET_HERO: {
+            return {
+                ...state,
+                hero: action.payload,
+            }
+        }
         default: 
             return state; // <=== Dans le default, pas de throw Error, il faut retourner le state.
     }

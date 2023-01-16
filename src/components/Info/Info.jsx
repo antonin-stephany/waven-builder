@@ -4,37 +4,38 @@ import './Info.scss';
 import DropDown from '../DropDown/DropDown';
 import dataCharacter from '../../data/classes';
 import { useDispatch, useSelector } from 'react-redux';
-import { actionSaveBuild, actionSetLevel } from '../../actions/characterActions'
+import { actionSaveBuild, actionSetLevel, actionSetClass, actionSetHero } from '../../actions/characterActions'
 
 
 function Info() {
     const [inputTitle, setInputTitle] = useState('');
     const level = useSelector((fullState) => fullState.character.level);
     const classes = useSelector((fullState) => fullState.character.classes);
-    const [inputClass, setInputClass] = useState(dataCharacter[0].value);
     const [labelHero, setLabelHero] = useState(0);
-    const [inputHero, setInputHero] = useState(dataCharacter[0].heros[0].value);
+    const hero = useSelector((fullState) => fullState.character.hero);
     const dispatch = useDispatch();
     const handleSubmit = (e) => {
         e.preventDefault();
+
         if (!inputTitle.trim()) {
           return; 
           // pour ne pas envoyer le build si c'est vide.
         }
         dispatch(
-          actionSaveBuild(inputTitle, level, classes, inputHero),
+          actionSaveBuild(inputTitle),
         );
+     };
 
-      };
-      const handleOnchangeClass = (e) =>  {
-        setInputClass(e.target.value)
-
-        setLabelHero(dataCharacter.findIndex(element => element.value === e.target.value));
-        console.log(labelHero);
+    const handleOnchangeClass = (e) =>  {
+        //met à jour la classe
+        dispatch(actionSetClass(e.target.value))
+        //trouve l'index de la classe qui correspond à l'element selectionné et le met dans le state
+        const newLabel = dataCharacter.findIndex(element => element.value === e.target.value);
+        setLabelHero(newLabel);
         //change la valeur de l'hero par défaut 
-        setInputHero(dataCharacter[labelHero].heros[0].value);
-        console.log(inputHero);
-      }
+        dispatch(actionSetHero(dataCharacter[newLabel].heros[0].value));
+    }
+
     return (
         <form className="info" onSubmit={handleSubmit}>
             <input 
@@ -49,13 +50,13 @@ function Info() {
             </div>
             <div className="class-level-container">
                 <DropDown 
-                    value={inputClass}
+                    value={classes}
                     onChange={handleOnchangeClass}
                     options={dataCharacter} 
                 />
                 <DropDown 
-                    value={inputHero}
-                    onChange={(e) => setInputHero(e.target.value)}
+                    value={hero}
+                    onChange={(e) => dispatch(actionSetHero(e.target.value))}
                     options={dataCharacter[labelHero].heros} 
                 />
                 <input 
@@ -69,7 +70,7 @@ function Info() {
                 />
                
             </div>
-            <img src={`./assets/logo/${inputHero}.png`} />
+            <img src={`./assets/logo/${classes}/${hero}.png`} />
  
             <button
                 type="submit"

@@ -114,19 +114,19 @@ export default [
       label: 'Xélor',
       heros: [
         {
-          value: 'aiguille pikuxala',
+          value: 'aiguille-pikuxala',
           label: 'Aiguille Pikuxala',
         },{
-          value: 'catalysateur pramium',
+          value: 'catalysateur-pramium',
           label: 'Catalysateur Pramium',
         },{
-          value: 'régulant gurpapa',
+          value: 'regulant-gurpapa',
           label: 'Régulant Gurpapa',
         },{
-          value: 'sabliaton jikan',
+          value: 'sabliaton-jikan',
           label: 'Sabliaton Jikan',
         },{
-          value: 'synchronisateur tako',
+          value: 'synchronisateur-tako',
           label: 'Synchronisateur Tako',
         }
       ]
