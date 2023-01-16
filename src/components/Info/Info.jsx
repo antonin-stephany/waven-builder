@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 //import PropTypes from 'prop-types';
 import './Info.scss';
 import DropDown from '../DropDown/DropDown';
-import classes from '../../data/classes';
-import { useDispatch } from 'react-redux';
-import { actionSaveBuild } from '../../actions/characterActions'
+import dataCharacter from '../../data/classes';
+import { useDispatch, useSelector } from 'react-redux';
+import { actionSaveBuild, actionSetLevel, actionSetClass } from '../../actions/characterActions'
 
 
 function Info() {
     const [inputTitle, setInputTitle] = useState('');
-    const [inputLevel, setInputLevel] = useState(1);
-    const [inputClass, setInputClass] = useState(classes[0].value);
+    const level = useSelector((fullState) => fullState.character.level);
+    const classes = useSelector((fullState) => fullState.character.classes);
     const [labelHero, setLabelHero] = useState(0);
-    const [inputHero, setInputHero] = useState(classes[0].heros[0].value);
+    const [inputHero, setInputHero] = useState(dataCharacter[0].heros[0].value);
     const dispatch = useDispatch();
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -21,18 +21,19 @@ function Info() {
           // pour ne pas envoyer le build si c'est vide.
         }
         dispatch(
-          actionSaveBuild(inputTitle, inputLevel, inputClass, inputHero),
+          actionSaveBuild(inputTitle, level, classes, inputHero),
         );
 
       };
       const handleOnchangeClass = (e) =>  {
-        //met à joru le state Classe
-        setInputClass(e.target.value);
+        dispatch(actionSetClass(e.target.value))
         //trouve l'index de la classe qui correspond à l'element selectionné et le met dans le state
-        setLabelHero(classes.findIndex(element => element.value === e.target.value));
-        //change la valeur de l'hero par défaut 
-        setInputHero(classes[labelHero].heros[0].value);
 
+        setLabelHero(dataCharacter.findIndex(element => element.value === e.target.value));
+        console.log(labelHero);
+        //change la valeur de l'hero par défaut 
+        setInputHero(dataCharacter[labelHero].heros[0].value);
+        console.log(inputHero);
       }
     return (
         <form className="info" onSubmit={handleSubmit}>
@@ -48,14 +49,14 @@ function Info() {
             </div>
             <div className="class-level-container">
                 <DropDown 
-                    value={inputClass}
+                    value={classes}
                     onChange={handleOnchangeClass}
-                    options={classes} 
+                    options={dataCharacter} 
                 />
                 <DropDown 
                     value={inputHero}
                     onChange={(e) => setInputHero(e.target.value)}
-                    options={classes[labelHero].heros} 
+                    options={dataCharacter[labelHero].heros} 
                 />
                 <input 
                 type="number" 
@@ -63,11 +64,13 @@ function Info() {
                 className="level" 
                 min="1"
                 max="100" 
-                value={inputLevel}
-                onChange={(e) => setInputLevel(e.target.value)}
+                value={level}
+                onChange={(e) => dispatch(actionSetLevel(e.target.value))}
                 />
                
             </div>
+            <img src={`./assets/logo/${inputHero}.png`} />
+ 
             <button
                 type="submit"
                 className="build-save"

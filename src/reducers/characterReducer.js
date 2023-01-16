@@ -1,4 +1,4 @@
-import { SAVE_BUILD } from '../actions/characterActions';
+import { SAVE_BUILD, SET_CLASS, SET_LEVEL } from '../actions/characterActions';
 import classes from '../data/classes';
 
 export const initialState = {
@@ -19,6 +19,18 @@ function characterReducer(state = initialState, action = {}){ // <===
                 classes: action.payload.inputClass,
                 hero: action.payload.inputHero,
             };
+        }
+        case SET_LEVEL: {
+            return {
+                ...state,
+                level: action.payload,
+            }
+        }
+        case SET_CLASS: {
+            return {
+                ...state,
+                classes: action.payload,
+            }
         }
         default: 
             return state; // <=== Dans le default, pas de throw Error, il faut retourner le state.
