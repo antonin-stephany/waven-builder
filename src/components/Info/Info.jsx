@@ -11,6 +11,7 @@ function Info() {
     const [inputTitle, setInputTitle] = useState('');
     const level = useSelector((fullState) => fullState.character.level);
     const classes = useSelector((fullState) => fullState.character.classes);
+    const [inputClass, setInputClass] = useState(dataCharacter[0].value);
     const [labelHero, setLabelHero] = useState(0);
     const [inputHero, setInputHero] = useState(dataCharacter[0].heros[0].value);
     const dispatch = useDispatch();
@@ -26,8 +27,7 @@ function Info() {
 
       };
       const handleOnchangeClass = (e) =>  {
-        dispatch(actionSetClass(e.target.value))
-        //trouve l'index de la classe qui correspond à l'element selectionné et le met dans le state
+        setInputClass(e.target.value)
 
         setLabelHero(dataCharacter.findIndex(element => element.value === e.target.value));
         console.log(labelHero);
@@ -49,7 +49,7 @@ function Info() {
             </div>
             <div className="class-level-container">
                 <DropDown 
-                    value={classes}
+                    value={inputClass}
                     onChange={handleOnchangeClass}
                     options={dataCharacter} 
                 />
