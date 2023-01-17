@@ -1,27 +1,40 @@
 import React from 'react';
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import './Ring.scss';
 
-function Ring() {
+function Ring({openModal}) {
+
     return (
         <div className="stuff-ring">
-            <div className="stuff-ring-slot">
-                test
+            <div 
+                className="stuff-ring-slot" onClick={openModal}
+            >
+                
             </div>
-            <div className="stuff-ring-slot">
-                test
+            <div 
+                className="stuff-ring-slot" 
+                onClick={openModal}
+            >
+                
             </div>
-            <div className="stuff-ring-slot">
-                test
+            <div 
+                className="stuff-ring-slot" 
+                onClick={openModal}
+            >
+                
             </div>
-            <div className="stuff-ring-slot">
-                test
+            <div 
+                className="stuff-ring-slot" 
+                onClick={openModal}
+            >
+                
             </div>
         </div>
       );
 }
   
 Ring.propTypes = {
+    openModal: PropTypes.func.isRequired,
 };
 
 Ring.defaultProps = {
