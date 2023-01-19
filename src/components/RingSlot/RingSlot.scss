@@ -1,0 +1,21 @@
+@use 'src/styles/vars' as v;
+
+.ring-slot{
+    width: 50%;
+    display: flex;
+    align-items: flex-start;
+    padding: v.$gutter;
+    border: 2px solid v.$color-line;
+    &:hover{
+        cursor: pointer;
+        background-color: v.$color-slot;
+    }
+    &-content{
+        padding: v.$gutter;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+
+}

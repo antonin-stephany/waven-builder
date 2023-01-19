@@ -2,6 +2,7 @@
 
 .app {
   background-color: v.$color-app-container;
+  font-size: v.$font-text;
 
   &-title{
     text-align: center;
@@ -13,6 +14,7 @@
 
   &-container{
     width: 90vw;
+    max-height: calc(440px + 2*v.$gutter);
     border-radius: v.$round;
     margin: v.$gutter*2 auto;
     background-color: v.$color-background;

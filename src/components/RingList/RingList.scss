@@ -1,0 +1,26 @@
+@use 'src/styles/vars' as v;
+
+.ring-list{
+    width: 65%;
+    margin: v.$gutter;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: overlay;
+}
+.cross-ring{
+    font-size: v.$font-title;
+    background-color: red;
+    color: white;
+    position: absolute;
+    padding: 0 4px;
+    z-index: 1;
+    right: calc(5vw - 1rem);
+    margin-top: -30px;
+    &:after{
+        display: inline-block;
+        content: "\00d7"; /* This will render the 'X' */
+    }
+    &:hover{
+        cursor: pointer;
+    }
+}

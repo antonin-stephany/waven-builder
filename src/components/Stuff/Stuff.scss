@@ -3,6 +3,7 @@
 .stuff{
     display: flex;
     align-items: flex-end;
+    width: 35%;
 
     &-ring-slot, &-cuff-slot, &-companion-slot{
         width: 90px;
