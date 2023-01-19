@@ -1,10 +1,5 @@
 @use 'src/styles/vars' as v;
 
 .info{
-    &-ring-slot, &-cuff-slot, &-companion-slot{
-        width: 90px;
-        height: 90px;
-        background-color: v.$color-slot;
-        margin: v.$gutter;
-    }
+    margin:v.$gutter;
 }

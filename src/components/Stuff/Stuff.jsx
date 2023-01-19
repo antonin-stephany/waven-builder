@@ -5,10 +5,13 @@ import Companion from '../Companion/Companion';
 import Cuff from '../Cuff/Cuff';
 import './Stuff.scss';
 
-function Stuff({openRingModal, openCuffModal}) {
+function Stuff({openRingModal, openCuffModal, ringEmplacement}) {
     return (
        <div className="stuff">
-        <Ring openModal={openRingModal} />
+        <Ring 
+          openModal={openRingModal} 
+          ringEmplacement={ringEmplacement}
+        />
         <Cuff openModal={openCuffModal} />
         <Companion />
       </div>
@@ -18,6 +21,7 @@ function Stuff({openRingModal, openCuffModal}) {
 Stuff.propTypes = {
   openRingModal: PropTypes.func.isRequired,
   openCuffModal: PropTypes.func.isRequired,
+  ringEmplacement: PropTypes.func.isRequired,
 };
 
 Stuff.defaultProps = {

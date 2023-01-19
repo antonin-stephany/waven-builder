@@ -10,6 +10,8 @@ function App() {
   //states infos
   const [inputTitle, setInputTitle] = useState('');
   const [labelHero, setLabelHero] = useState(0);
+  //states stuff
+  const [ringLabel, setRingLabel] = useState(0);
   //states des modales
   const [showRightPart, setShowRightPart] = useState(true);
   const [modalRingOpen, setModalRingOpen] = useState(false);
@@ -25,6 +27,11 @@ function App() {
     setLabelHero(newLabel)
   }
   
+  //Partie Stuff
+  //--anneau
+  function ringEmplacement(i){
+    setRingLabel(i);
+  }
   //Ouvertures/fermetures des modales
   //--anneau
   function openRingModal(){
@@ -48,9 +55,13 @@ function App() {
         <Stuff 
            openRingModal={openRingModal}
            openCuffModal={openCuffModal}
+           ringEmplacement={ringEmplacement}
         />
         {modalRingOpen && 
-        <RingList closeRingModal={closeRingModal} />}
+        <RingList 
+          closeRingModal={closeRingModal} 
+          label={ringLabel}
+        />}
         {modalCuffOpen && 
         <div className="cuff-modal" >
           <div> Jai cliqué sur le brassard</div>

@@ -11,5 +11,9 @@
         background-color: v.$color-slot;
         margin: v.$gutter;
         cursor: pointer;
+        & img{
+            width: 100%;
+            padding: 2px;
+        }
     }
 }

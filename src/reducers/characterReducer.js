@@ -1,7 +1,7 @@
 import { SAVE_BUILD, SET_CLASS, SET_LEVEL, SET_HERO } from '../actions/characterActions';
 import classes from '../data/classes';
 
-export const initialState = {
+export const initialStateCharacter = {
     title: '',
     classes: classes[0].value,
     hero: classes[0].heros[0].value,
@@ -10,7 +10,7 @@ export const initialState = {
 
 // le initialState est donnée via la valeur par default du parametre dans le reducer
 // Du coup il faut aussi donner une valeur par defaut à l'action
-function characterReducer(state = initialState, action = {}){ // <=== 
+const characterReducer = (state = initialStateCharacter, action = {}) => { // <=== 
     switch(action.type){
         case SAVE_BUILD: {
             return {
