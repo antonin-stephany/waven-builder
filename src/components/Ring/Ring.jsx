@@ -1,49 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Ring.scss';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { actionDeleteRing } from '../../actions/stuffActions'
 
 function Ring({openModal, ringEmplacement}) {
+    const dispatch = useDispatch();
     const rings = useSelector((fullState) => fullState.stuff.rings);
-
+    function deleteRing(event, label){
+        event.stopPropagation();
+        dispatch(
+            actionDeleteRing(label),
+          );
+    }
     return (
         <div className="stuff-ring">
+        {rings.map((ring, i) => 
             <div 
+                key={i}
                 className="stuff-ring-slot" 
                 onClick={() => {
                     openModal();
-                    ringEmplacement(0);
+                    ringEmplacement(i);
                     }}
             >
-            {rings[0].value !== '' && <img src={`./assets/ring/${rings[0].value}.png`} />} 
-            </div>
-            <div 
-                className="stuff-ring-slot" 
-                onClick={() => {
-                    openModal();
-                    ringEmplacement(1);
-                    }}
-            >
-            {rings[1].value !== '' && <img src={`./assets/ring/${rings[1].value}.png`} />} 
-            </div>
-            <div 
-                className="stuff-ring-slot" 
-                onClick={() => {
-                    openModal();
-                    ringEmplacement(2);
-                    }}
-            >
-            {rings[2].value !== '' && <img src={`./assets/ring/${rings[2].value}.png`} />} 
-           </div>
-            <div 
-                className="stuff-ring-slot" 
-                onClick={() => {
-                    openModal();
-                    ringEmplacement(3);
-                    }}
-            >
-            {rings[3].value !== '' && <img src={`./assets/ring/${rings[3].value}.png`} />} 
-            </div>
+                {ring.value !== '' && 
+                <>
+                    <img src={`./assets/ring/${ring.value}.png`} />
+                    <div onClick={(event) => {deleteRing(event, i)}} className="delete-item"></div>
+                </>
+                } 
+            </div>)}
         </div>
       );
 }

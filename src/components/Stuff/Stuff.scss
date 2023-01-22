@@ -6,6 +6,7 @@
     width: 35%;
 
     &-ring-slot, &-cuff-slot, &-companion-slot{
+        position: relative;
         width: 90px;
         height: 90px;
         background-color: v.$color-slot;
@@ -15,5 +16,24 @@
             width: 100%;
             padding: 2px;
         }
+    }
+}
+.delete-item{
+    font-size: v.$font-text;
+    background-color: red;
+    color: white;
+    position: absolute;
+    padding: 0 4px;
+    z-index: 1;
+    width: 15px;
+    margin: 5px;
+    left: calc(100% - 10px);
+    bottom: calc(100% - 8px);
+    &:after{
+        display: inline-block;
+        content: "\00d7"; /* This will render the 'X' */
+    }
+    &:hover{
+        cursor: pointer;
     }
 }

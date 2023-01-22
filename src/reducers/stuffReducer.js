@@ -1,4 +1,4 @@
-import { SET_RING } from '../actions/stuffActions.js';
+import { SET_RING, DELETE_RING } from '../actions/stuffActions.js';
 
 export const initialStateStuff = {
     rings:[
@@ -21,6 +21,14 @@ const stuffReducer = (state = initialStateStuff, action = {}) => { // <===
                    (ring, i) => i === action.payload.label ? {...ring, value: action.payload.value}:ring
                 )
             };
+        }
+        case DELETE_RING: {
+            return {
+                ...state,
+                rings: state.rings.map(
+                   (ring, i) => i === action.payload ? {...ring, value: ''}:ring
+                )
+            }
         }
         default: 
             return state; // <=== Dans le default, pas de throw Error, il faut retourner le state.
