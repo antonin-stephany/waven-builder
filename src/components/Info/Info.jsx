@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { actionSaveBuild, actionSetLevel, actionSetClass, actionSetHero } from '../../actions/characterActions'
 
 
-function Info({inputTitle, changeTitle, labelHero, updateLabelHero}) {
+function Info({inputTitle, changeTitle, labelHero, updateLabelHero, errorMessage}) {
 
     const level = useSelector((fullState) => fullState.character.level);
     const classes = useSelector((fullState) => fullState.character.classes);
@@ -18,6 +18,7 @@ function Info({inputTitle, changeTitle, labelHero, updateLabelHero}) {
         e.preventDefault();
 
         if (!inputTitle.trim()) {
+            errorMessage("Veuillez choisir un nom pour votre build")
           return; 
           // pour ne pas envoyer le build si c'est vide.
         }
@@ -87,6 +88,7 @@ Info.propTypes = {
     changeTitle: PropTypes.func.isRequired,
     labelHero: PropTypes.number.isRequired,
     updateLabelHero: PropTypes.func.isRequired,
+    errorMessage: PropTypes.func.isRequired,
 };
 
 Info.defaultProps = {

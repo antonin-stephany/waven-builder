@@ -17,9 +17,19 @@
     max-height: calc(440px + 2*v.$gutter);
     border-radius: v.$round;
     margin: v.$gutter*2 auto;
+    margin-top: v.$gutter*4;
     background-color: v.$color-background;
     padding: v.$gutter;
     display: flex;
     justify-content: space-between;
+  }
+
+  &-error{
+    text-align: center;
+    color: v.$color-title;
+    background-color: v.$color-error;
+    padding: v.$gutter;
+    position: absolute;
+    width: 100%;
   }
 }

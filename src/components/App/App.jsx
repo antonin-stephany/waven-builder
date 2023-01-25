@@ -7,6 +7,8 @@ import RingList from '../RingList/RingList';
 import './App.scss';
 
 function App() {
+  //message d'erreur
+  const [errorMessage, setErrorMessage] = useState('');
   //states infos
   const [inputTitle, setInputTitle] = useState('');
   const [labelHero, setLabelHero] = useState(0);
@@ -28,6 +30,18 @@ function App() {
   }
   
   //Partie Stuff
+  //message erreur
+  function handleErrorMessage(message){
+    setErrorMessage(message);
+    const timeId = setTimeout(() => {
+      // After 2 seconds set the show value to false
+      setErrorMessage('')
+    }, 3000)
+
+    return () => {
+      clearTimeout(timeId)
+    }
+  }
   //--anneau
   function ringEmplacement(i){
     setRingLabel(i);
@@ -51,6 +65,9 @@ function App() {
   return (
     <div className="app">
       <h1 className="app-title">Waven builder</h1>
+      {errorMessage && (
+          <p className="app-error"> {errorMessage} </p>
+        )}
       <div className="app-container">
         <Stuff 
            openRingModal={openRingModal}
@@ -61,6 +78,7 @@ function App() {
         <RingList 
           closeRingModal={closeRingModal} 
           label={ringLabel}
+          errorMessage={handleErrorMessage}
         />}
         {modalCuffOpen && 
         <div className="cuff-modal" >
@@ -73,6 +91,7 @@ function App() {
               changeTitle={changeTitle}
               labelHero={labelHero}
               updateLabelHero={updateLabelHero}
+              errorMessage={handleErrorMessage}
             />
             <Stats />
           </>

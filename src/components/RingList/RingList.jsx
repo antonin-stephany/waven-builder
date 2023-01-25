@@ -4,7 +4,7 @@ import './RingList.scss';
 import RingItem from '../RingItem/RingItem';
 import ringList from '../../data/rings';
 
-function RingList({closeRingModal, label}) {
+function RingList({closeRingModal, label, errorMessage}) {
     return (
         <>
        <div className="ring-list">
@@ -17,6 +17,7 @@ function RingList({closeRingModal, label}) {
             stats={ring.stats}
             gifts={ring.gifts}
             label={label}
+            errorMessage={errorMessage}
         />
 
        ))}
@@ -32,6 +33,7 @@ function RingList({closeRingModal, label}) {
 RingList.propTypes = {
     closeRingModal: PropTypes.func.isRequired,
     label: PropTypes.number.isRequired,
+    errorMessage: PropTypes.func.isRequired,
 };
 
 RingList.defaultProps = {
