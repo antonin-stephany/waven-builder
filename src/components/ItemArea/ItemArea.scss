@@ -1,0 +1,20 @@
+@use "src/styles/vars" as v;
+
+.cross-ring {
+  border: 0;
+  font-size: v.$font-title;
+  background-color: v.$color-cross;
+  color: white;
+  position: absolute;
+  padding: 0 4px;
+  z-index: 1;
+  right: calc(5vw - 1rem);
+  margin-top: -30px;
+  &:after {
+    display: inline-block;
+    content: "\00d7"; /* This will render the 'X' */
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
