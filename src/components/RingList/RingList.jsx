@@ -1,15 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import './RingList.scss';
-import RingItem from '../RingItem/RingItem';
-import ringList from '../../data/rings';
+import React from "react";
+import PropTypes from "prop-types";
+import "./RingList.scss";
+import RingItem from "../RingItem/RingItem";
+import ringList from "../../data/rings";
 
-function RingList({closeRingModal, label, errorMessage}) {
-    return (
-        <>
-       <div className="ring-list">
-       {ringList.map((ring) => (
-        <RingItem
+function RingList({ label, errorMessage }) {
+  return (
+    <>
+      <div className="ring-list">
+        {ringList.map((ring) => (
+          <RingItem
             key={ring.value}
             value={ring.value}
             description={ring.description}
@@ -18,25 +18,18 @@ function RingList({closeRingModal, label, errorMessage}) {
             gifts={ring.gifts}
             label={label}
             errorMessage={errorMessage}
-        />
-
-       ))}
-
+          />
+        ))}
       </div>
-      <div onClick={closeRingModal} className="cross-ring">
-    
-      </div>
-      </>
-      );
+    </>
+  );
 }
-  
+
 RingList.propTypes = {
-    closeRingModal: PropTypes.func.isRequired,
-    label: PropTypes.number.isRequired,
-    errorMessage: PropTypes.func.isRequired,
+  label: PropTypes.number.isRequired,
+  errorMessage: PropTypes.func.isRequired,
 };
 
-RingList.defaultProps = {
-};
+RingList.defaultProps = {};
 
 export default React.memo(RingList);
