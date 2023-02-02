@@ -1,16 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Ring from "../Ring/Ring";
-import Companion from "../Companion/Companion";
-import Cuff from "../Cuff/Cuff";
+import RingSlot from "../RingSlot/RingSlot";
+import CompanionSlot from "../CompanionSlot/CompanionSlot";
+import CuffSlot from "../CuffSlot/CuffSlot";
 import "./Stuff.scss";
 
 function Stuff({ openRightPart }) {
   return (
     <div className="stuff">
-      <Ring openModal={openRightPart} />
-      <Cuff openModal={() => openRightPart("cuff")} />
-      <Companion />
+      <RingSlot openModal={openRightPart} />
+      <CuffSlot openModal={() => openRightPart("cuff")} />
+      <CompanionSlot />
     </div>
   );
 }

@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { actionSaveBuild, actionSetLevel, actionSetClass, actionSetHero } from '../../actions/characterActions'
 
 
-function Info({inputTitle, changeTitle, labelHero, updateLabelHero, errorMessage}) {
+function Info({buildName, changeTitle, indexHero, updateIndexHero, errorMessage}) {
 
     const level = useSelector((fullState) => fullState.character.level);
     const classes = useSelector((fullState) => fullState.character.classes);
@@ -17,13 +17,13 @@ function Info({inputTitle, changeTitle, labelHero, updateLabelHero, errorMessage
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (!inputTitle.trim()) {
+        if (!buildName.trim()) {
             errorMessage("Veuillez choisir un nom pour votre build")
           return; 
           // pour ne pas envoyer le build si c'est vide.
         }
         dispatch(
-          actionSaveBuild(inputTitle),
+          actionSaveBuild(buildName),
         );
      };
 
@@ -31,10 +31,10 @@ function Info({inputTitle, changeTitle, labelHero, updateLabelHero, errorMessage
         //met à jour la classe
         dispatch(actionSetClass(e.target.value))
         //trouve l'index de la classe qui correspond à l'element selectionné et le met dans le state
-        const newLabel = dataCharacter.findIndex(element => element.value === e.target.value);
-        updateLabelHero(newLabel);
+        const newIndex = dataCharacter.findIndex(element => element.value === e.target.value);
+        updateIndexHero(newIndex);
         //change la valeur de l'hero par défaut 
-        dispatch(actionSetHero(dataCharacter[newLabel].heros[0].value));
+        dispatch(actionSetHero(dataCharacter[newIndex].heros[0].value));
     }
 
     return (
@@ -43,7 +43,7 @@ function Info({inputTitle, changeTitle, labelHero, updateLabelHero, errorMessage
                 type="text" 
                 placeholder="Nom du build" 
                 className="title"  
-                value={inputTitle}
+                value={buildName}
                 onChange={changeTitle}
             />
             <div className="icon-class">
@@ -58,7 +58,7 @@ function Info({inputTitle, changeTitle, labelHero, updateLabelHero, errorMessage
                 <DropDown 
                     value={hero}
                     onChange={(e) => dispatch(actionSetHero(e.target.value))}
-                    options={dataCharacter[labelHero].heros} 
+                    options={dataCharacter[indexHero].heros} 
                 />
                 <input 
                 type="number" 
@@ -84,10 +84,10 @@ function Info({inputTitle, changeTitle, labelHero, updateLabelHero, errorMessage
 }
   
 Info.propTypes = {
-    inputTitle: PropTypes.string.isRequired,
+    buildName: PropTypes.string.isRequired,
     changeTitle: PropTypes.func.isRequired,
-    labelHero: PropTypes.number.isRequired,
-    updateLabelHero: PropTypes.func.isRequired,
+    indexHero: PropTypes.number.isRequired,
+    updateIndexHero: PropTypes.func.isRequired,
     errorMessage: PropTypes.func.isRequired,
 };
 

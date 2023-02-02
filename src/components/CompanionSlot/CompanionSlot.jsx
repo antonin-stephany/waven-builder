@@ -1,8 +1,8 @@
 import React from 'react';
 //import PropTypes from 'prop-types';
-import './Companion.scss';
+import './CompanionSlot.scss';
 
-function Companion() {
+function CompanionSlot() {
     return (
         <div className="stuff-companion">
             <div className="stuff-companion-slot">
@@ -21,10 +21,10 @@ function Companion() {
       );
 }
   
-Companion.propTypes = {
+CompanionSlot.propTypes = {
 };
 
-Companion.defaultProps = {
+CompanionSlot.defaultProps = {
 };
 
-export default React.memo(Companion);
+export default React.memo(CompanionSlot);

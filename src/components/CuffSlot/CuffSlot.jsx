@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Cuff.scss';
+import './CuffSlot.scss';
 
 function Cuff({openModal}) {
     return (
