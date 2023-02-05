@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { actionSaveBuild, actionSetLevel, actionSetClass, actionSetHero } from '../../actions/characterActions'
 
 
-function Info({buildName, changeTitle, indexHero, updateIndexHero, errorMessage}) {
+function Info({buildName, updateBuildName, indexHero, updateIndexHero, errorMessage}) {
 
     const level = useSelector((fullState) => fullState.character.level);
     const classes = useSelector((fullState) => fullState.character.classes);
@@ -44,7 +44,7 @@ function Info({buildName, changeTitle, indexHero, updateIndexHero, errorMessage}
                 placeholder="Nom du build" 
                 className="title"  
                 value={buildName}
-                onChange={changeTitle}
+                onChange={updateBuildName}
             />
             <div className="icon-class">
 
@@ -85,7 +85,7 @@ function Info({buildName, changeTitle, indexHero, updateIndexHero, errorMessage}
   
 Info.propTypes = {
     buildName: PropTypes.string.isRequired,
-    changeTitle: PropTypes.func.isRequired,
+    updateBuildName: PropTypes.func.isRequired,
     indexHero: PropTypes.number.isRequired,
     updateIndexHero: PropTypes.func.isRequired,
     errorMessage: PropTypes.func.isRequired,

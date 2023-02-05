@@ -9,7 +9,7 @@ function Stuff({ openRightPart }) {
   return (
     <div className="stuff">
       <RingSlot openModal={openRightPart} />
-      <CuffSlot openModal={() => openRightPart("cuff")} />
+      <CuffSlot openModal={openRightPart} />
       <CompanionSlot />
     </div>
   );

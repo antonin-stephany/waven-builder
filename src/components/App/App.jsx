@@ -15,9 +15,9 @@ function App() {
 
   //Partie Info
   //changer le titre
-  const changeTitle = (e) => {
+  function updateBuildName(e) {
     setBuildName(e.target.value);
-  };
+  }
   //permet de trouver le label de la classe pour avoir les heros associés à cette classe
   function updateIndexHero(newIndex) {
     setindexHero(newIndex);
@@ -61,7 +61,7 @@ function App() {
           <>
             <Info
               buildName={buildName}
-              changeTitle={changeTitle}
+              updateBuildName={updateBuildName}
               indexHero={indexHero}
               updateIndexHero={updateIndexHero}
               errorMessage={handleErrorMessage}
