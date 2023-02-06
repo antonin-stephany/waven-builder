@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Stuff from "../Stuff/Stuff";
+import StuffSlot from "../StuffSlot/StuffSlot";
 import Info from "../Info/Info";
 import Stats from "../Stats/Stats";
 import BuildList from "../BuildList/BuildList";
@@ -49,7 +49,7 @@ function App() {
       <h1 className="app-title">Waven builder</h1>
       {errorMessage && <p className="app-error"> {errorMessage} </p>}
       <div className="app-container">
-        <Stuff openRightPart={openItemArea} />
+        <StuffSlot openRightPart={openItemArea} />
         {itemType ? (
           <ItemArea
             type={itemType}

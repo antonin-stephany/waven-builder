@@ -1,30 +1,30 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./RingSlot.scss";
+import "./SlotItem.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { actionDeleteItem } from "../../actions/stuffActions";
 
-function RingSlot({ openModal }) {
+function SlotItem({ openModal, type }) {
   const dispatch = useDispatch();
-  const ring = useSelector((fullState) => fullState.stuff.ring);
-  function deleteRing(event, index, type) {
+  const stuff = useSelector((fullState) => fullState.stuff);
+  function deleteItem(event, index, type) {
     event.stopPropagation();
     dispatch(actionDeleteItem({index, type}));
   }
   return (
-    <div className="stuff-ring">
-      {ring.map((ring, i) => (
+    <div className={`stuff-${type}`}>
+      {stuff[type].map((item, i) => (
         <div
           key={i}
-          className="stuff-ring-slot"
-          onClick={() => openModal("ring", i)}
+          className={`stuff-${type}-slot`}
+          onClick={() => openModal(type, i)}
         >
-          {ring.value !== "" && (
+          {item.value !== "" && (
             <>
-              <img src={`./assets/ring/${ring.value}.png`} />
+              <img src={`./assets/${type}/${item.value}.png`} />
               <button
                 onClick={(event) => {
-                  deleteRing(event, i, "ring");
+                  deleteItem(event, i, type);
                 }}
                 className="delete-item"
               ></button>
@@ -36,10 +36,11 @@ function RingSlot({ openModal }) {
   );
 }
 
-RingSlot.propTypes = {
+SlotItem.propTypes = {
   openModal: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
-RingSlot.defaultProps = {};
+SlotItem.defaultProps = {};
 
-export default React.memo(RingSlot);
+export default React.memo(SlotItem);

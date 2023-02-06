@@ -9,6 +9,12 @@ export const initialStateStuff = {
     ],   
     cuff:[
         {value:''},
+    ],
+    companion:[
+        {value:''},
+        {value:''},
+        {value:''},
+        {value:''},
     ]
 };
 
@@ -27,7 +33,7 @@ const stuffReducer = (state = initialStateStuff, action = {}) => { // <===
         case DELETE_ITEM: {
             return {
                 ...state,
-                [action.payload.type]: state.ring.map(
+                [action.payload.type]: state[action.payload.type].map(
                    (item, i) => i === action.payload.index ? {...item, value: ''}:item
                 )
             }

@@ -16,6 +16,11 @@ function ItemArea({ type, close, slotIndex, handleErrorMessage }) {
         <ItemList type={type} index={slotIndex} errorMessage={handleErrorMessage} />
       );
       break;
+      case "companion":
+        component = (
+          <ItemList type={type} index={slotIndex} errorMessage={handleErrorMessage} />
+        );
+        break;
     default:
       return;
   }
