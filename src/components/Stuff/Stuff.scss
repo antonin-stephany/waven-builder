@@ -12,6 +12,7 @@
         background-color: v.$color-slot;
         margin: v.$gutter;
         cursor: pointer;
+        border: 0;
         & img{
             width: 100%;
             padding: 2px;
@@ -29,6 +30,7 @@
     margin: 5px;
     left: calc(100% - 10px);
     bottom: calc(100% - 8px);
+    border: 0;
     &:after{
         display: inline-block;
         content: "\00d7"; /* This will render the 'X' */

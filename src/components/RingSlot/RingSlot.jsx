@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./Ring.scss";
+import "./RingSlot.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { actionDeleteRing } from "../../actions/stuffActions";
 
-function Ring({ openModal }) {
+function RingSlot({ openModal }) {
   const dispatch = useDispatch();
   const rings = useSelector((fullState) => fullState.stuff.rings);
   function deleteRing(event, label) {
@@ -22,12 +22,12 @@ function Ring({ openModal }) {
           {ring.value !== "" && (
             <>
               <img src={`./assets/ring/${ring.value}.png`} />
-              <div
+              <button
                 onClick={(event) => {
                   deleteRing(event, i);
                 }}
                 className="delete-item"
-              ></div>
+              ></button>
             </>
           )}
         </div>
@@ -36,11 +36,10 @@ function Ring({ openModal }) {
   );
 }
 
-Ring.propTypes = {
+RingSlot.propTypes = {
   openModal: PropTypes.func.isRequired,
-  ringEmplacement: PropTypes.func.isRequired,
 };
 
-Ring.defaultProps = {};
+RingSlot.defaultProps = {};
 
-export default React.memo(Ring);
+export default React.memo(RingSlot);

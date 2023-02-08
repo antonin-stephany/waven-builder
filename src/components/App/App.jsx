@@ -7,22 +7,20 @@ import "./App.scss";
 import ItemArea from "../ItemArea/ItemArea";
 
 function App() {
-  //message d'erreur
   const [errorMessage, setErrorMessage] = useState("");
-  //states infos
-  const [inputTitle, setInputTitle] = useState("");
-  const [labelHero, setLabelHero] = useState(0);
+  const [buildName, setBuildName] = useState("");
+  const [indexHero, setindexHero] = useState(0);
   const [slotIndex, setSlotIndex] = useState(0);
   const [itemType, setItemType] = useState(undefined);
 
   //Partie Info
   //changer le titre
   const changeTitle = (e) => {
-    setInputTitle(e.target.value);
+    setBuildName(e.target.value);
   };
   //permet de trouver le label de la classe pour avoir les heros associés à cette classe
-  function updateLabelHero(newLabel) {
-    setLabelHero(newLabel);
+  function updateIndexHero(newIndex) {
+    setindexHero(newIndex);
   }
 
   function openItemArea(type, index) {
@@ -62,10 +60,10 @@ function App() {
         ) : (
           <>
             <Info
-              inputTitle={inputTitle}
+              buildName={buildName}
               changeTitle={changeTitle}
-              labelHero={labelHero}
-              updateLabelHero={updateLabelHero}
+              indexHero={indexHero}
+              updateIndexHero={updateIndexHero}
               errorMessage={handleErrorMessage}
             />
             <Stats />

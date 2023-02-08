@@ -19,16 +19,16 @@ function ItemArea({ type, close, slotIndex, handleErrorMessage }) {
   }
 
   return (
-    <div>
-      <button className="cross-ring" onClick={close}></button>
+    <>
+      <button className="cross-close" onClick={close}></button>
       {component}
-    </div>
+    </>
   );
 }
 
 ItemArea.propTypes = {
   type: PropTypes.string.isRequired,
-  slotIndex: PropTypes.string.isRequired,
+  slotIndex: PropTypes.number.isRequired,
   close: PropTypes.func.isRequired,
   handleErrorMessage: PropTypes.func.isRequired,
 };
