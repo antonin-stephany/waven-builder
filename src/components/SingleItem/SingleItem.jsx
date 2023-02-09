@@ -29,20 +29,20 @@ function SingleItem({ value, description, rare, stats, gifts, index, errorMessag
     setTab(index)
   }
   return (
-    <div className={`${type}-slot`} onClick={addItem}>
+    <div className="item" onClick={addItem}>
       <img src={`./assets/${type}/${value}.png`} />
-      <div className={`${type}-slot-content`}>
-        <div className={`${type}-slot-content-title`}>
+      <div className="item-content">
+        <div className="item-content-title">
           <h2>{label}</h2>
           <span>{rare}</span>
         </div>
         <p>{description}</p>
-        <div className="container">
-          <div className="container-onglet">
+        <div className="item-content-container-carac">
+          <div className="item-content-container-carac-tabs">
             <h4 className={tab === 1 ? 'tab active-tab' : 'tab'} onClick={(event) => toggleTab(event, 1)}>Statistiques</h4>
             <h4 className={tab === 2 ? 'tab active-tab' : 'tab'} onClick={(event) => toggleTab(event, 2)}>Dons</h4>
           </div>
-          <div className={tab === 1 ? 'contenu active-contenu' : 'contenu'}>
+          <div className={tab === 1 ? 'content active-content' : 'content'}>
             {stats.map((stat) => (
               <div key={stat.description}>
               {stat.value ? (
@@ -57,7 +57,7 @@ function SingleItem({ value, description, rare, stats, gifts, index, errorMessag
               </div>
             ))}
           </div>
-          <div className={tab === 2 ? 'contenu active-contenu' : 'contenu'}>
+          <div className={tab === 2 ? 'content active-content' : 'content'}>
             {gifts.map((gift) => (
               <div key={gift.description}>
               {gift.value ? (

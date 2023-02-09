@@ -1,6 +1,6 @@
 @use 'src/styles/vars' as v;
 
-.ring-slot, .companion-slot, .cuff-slot{
+.item{
     width: 50%;
     display: flex;
     align-items: center;
@@ -33,23 +33,34 @@
             & span{
                 background-color: v.$color-background-title;
                 padding: 3px;
-                border-radius: 3px;
+                border-radius: v.$round;
                 color: v.$color-slot;
+            }
+        }
+        &-container-carac{
+            position: relative;
+            &-tabs{
+                display: flex;
+                & .tab{
+                    padding: 5px;
+                   border-bottom: 1px solid v.$color-tabs;
+                }
+                & .active-tab{
+                    border-bottom: 2px solid v.$color-tabs-active;
+                }
+            }
+            & .content{
+                display: none;
+                height:75px;
+                padding: v.$gutter;
+                & div p{
+                    line-height: 1.2em;
+                }
+            }
+            & .active-content{
+                display: block;
             }
         }
     }
 
-}
-.container{
-    position: relative;
-}
-.container-onglet{
-    display: flex;
-}
-.contenu{
-    display: none;
-    height:65px;
-}
-.active-contenu{
-    display: block;
 }
