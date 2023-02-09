@@ -19,6 +19,7 @@ function ItemList({ index, errorMessage, type }) {
           <SingleItem
             key={item.value}
             value={item.value}
+            label={item.label}
             description={item.description}
             rare={item.rare}
             stats={item.stats}

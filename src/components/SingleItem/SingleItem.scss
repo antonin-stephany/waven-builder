@@ -3,9 +3,10 @@
 .ring-slot, .companion-slot, .cuff-slot{
     width: 50%;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     padding: v.$gutter;
     border: 2px solid v.$color-line;
+    min-height: 200px;
     &:hover{
         cursor: pointer;
         background-color: v.$color-slot;
@@ -14,8 +15,41 @@
         padding: v.$gutter;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        height: 100%;
+        justify-content: flex-start;
+        min-height: 140px;
+        width: 100%;
+        &>p{
+            padding-bottom: v.$gutter/2;
+        }
+        &-title{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: v.$gutter;
+            & h2{
+                font-weight: bold;
+                font-size: v.$font-title-item;
+            }
+            & span{
+                background-color: v.$color-background-title;
+                padding: 3px;
+                border-radius: 3px;
+                color: v.$color-slot;
+            }
+        }
     }
 
+}
+.container{
+    position: relative;
+}
+.container-onglet{
+    display: flex;
+}
+.contenu{
+    display: none;
+    height:65px;
+}
+.active-contenu{
+    display: block;
 }

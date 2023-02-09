@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "./SingleItem.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { actionSetItem } from "../../actions/stuffActions";
 
-function SingleItem({ value, description, rare, stats, index, errorMessage, type }) {
+function SingleItem({ value, description, rare, stats, gifts, index, errorMessage, type, label}) {
   const stuff = useSelector((fullState) => fullState.stuff);
   const dispatch = useDispatch();
   function addItem() {
@@ -23,17 +23,56 @@ function SingleItem({ value, description, rare, stats, index, errorMessage, type
       dispatch(actionSetItem({ value, index, type }));
     }
   }
+  const [tab, setTab] = useState(1);
+  const toggleTab = (event, index) => {
+    event.stopPropagation();
+    setTab(index)
+  }
   return (
     <div className={`${type}-slot`} onClick={addItem}>
       <img src={`./assets/${type}/${value}.png`} />
       <div className={`${type}-slot-content`}>
-        <span>{rare}</span>
+        <div className={`${type}-slot-content-title`}>
+          <h2>{label}</h2>
+          <span>{rare}</span>
+        </div>
         <p>{description}</p>
-        {stats.map((stat) => (
-          <span key={stat.description}>
-            {stat.value}% {stat.description}
-          </span>
-        ))}
+        <div className="container">
+          <div className="container-onglet">
+            <h4 className={tab === 1 ? 'tab active-tab' : 'tab'} onClick={(event) => toggleTab(event, 1)}>Statistiques</h4>
+            <h4 className={tab === 2 ? 'tab active-tab' : 'tab'} onClick={(event) => toggleTab(event, 2)}>Dons</h4>
+          </div>
+          <div className={tab === 1 ? 'contenu active-contenu' : 'contenu'}>
+            {stats.map((stat) => (
+              <div key={stat.description}>
+              {stat.value ? (
+                <p>
+                  -{stat.value}% {stat.description}
+                </p>
+              ) : (
+                <p>
+                  -{stat.description}
+                </p>
+              )}
+              </div>
+            ))}
+          </div>
+          <div className={tab === 2 ? 'contenu active-contenu' : 'contenu'}>
+            {gifts.map((gift) => (
+              <div key={gift.description}>
+              {gift.value ? (
+                <p>
+                  -{gift.value}% {gift.description}
+                </p>
+              ) : (
+                <p>
+                  -{gift.description}
+                </p>
+              )}
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -41,12 +80,19 @@ function SingleItem({ value, description, rare, stats, index, errorMessage, type
 
 SingleItem.propTypes = {
   value: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   rare: PropTypes.string.isRequired,
   stats: PropTypes.arrayOf(
     PropTypes.shape({
       value: PropTypes.number.isRequired,
+      description: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  gifts: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.number,
       description: PropTypes.string.isRequired,
     })
   ).isRequired,

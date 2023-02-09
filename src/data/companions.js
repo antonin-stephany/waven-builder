@@ -141,8 +141,8 @@ export default [
         ],
     },
     { 
-        value: 'maitre-engreneur',
-        label: `Maître Engrneur`,
+        value: 'maitre-egreneur',
+        label: `Maître Egreneur`,
         description:'ATTAQUE : -2 PA au coût du prochain sort de MÉCANISME ou de PIÈGE que vous jouez.',
         rare: 'Commun',
         stats: [
