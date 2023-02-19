@@ -1,0 +1,8 @@
+@use "src/styles/vars" as v;
+
+.spells{
+    display: flex;
+    flex-wrap: wrap;
+    width: 258px;
+    margin: v.$gutter/2;
+}

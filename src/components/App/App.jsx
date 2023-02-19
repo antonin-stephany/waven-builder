@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import StuffSlot from "../StuffSlot/StuffSlot";
 import Info from "../Info/Info";
-import Stats from "../Stats/Stats";
+import SpellSlot from "../SpellSlot/SpellSlot";
 import BuildList from "../BuildList/BuildList";
 import "./App.scss";
 import ItemArea from "../ItemArea/ItemArea";
@@ -66,7 +66,7 @@ function App() {
               updateIndexHero={updateIndexHero}
               errorMessage={handleErrorMessage}
             />
-            <Stats />
+            <SpellSlot />
           </>
         )}
       </div>

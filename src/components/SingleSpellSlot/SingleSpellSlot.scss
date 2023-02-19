@@ -1,0 +1,8 @@
+@use "src/styles/vars" as v;
+
+.spell{
+    background-color: #ffffff;
+    width: 70px;
+    height: 70px;
+    margin:v.$gutter/2;
+}
