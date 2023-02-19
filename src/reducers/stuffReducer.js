@@ -1,32 +1,40 @@
-import { SET_RING, DELETE_RING } from '../actions/stuffActions.js';
+import { SET_ITEM, DELETE_ITEM } from '../actions/stuffActions.js';
 
 export const initialStateStuff = {
-    rings:[
+    ring:[
         {value:''},
         {value:''},
         {value:''},
         {value:''},
     ],   
-    cuff:'',
+    cuff:[
+        {value:''},
+    ],
+    companion:[
+        {value:''},
+        {value:''},
+        {value:''},
+        {value:''},
+    ]
 };
 
 // le initialState est donnée via la valeur par default du parametre dans le reducer
 // Du coup il faut aussi donner une valeur par defaut à l'action
 const stuffReducer = (state = initialStateStuff, action = {}) => { // <=== 
     switch(action.type){
-        case SET_RING: {
+        case SET_ITEM: {
             return {
                 ...state,
-                rings: state.rings.map(
-                   (ring, i) => i === action.payload.label ? {...ring, value: action.payload.value}:ring
+                [action.payload.type]: state[action.payload.type].map(
+                   (item, i) => i === action.payload.index ? {...item, value: action.payload.value}:item
                 )
             };
         }
-        case DELETE_RING: {
+        case DELETE_ITEM: {
             return {
                 ...state,
-                rings: state.rings.map(
-                   (ring, i) => i === action.payload ? {...ring, value: ''}:ring
+                [action.payload.type]: state[action.payload.type].map(
+                   (item, i) => i === action.payload.index ? {...item, value: ''}:item
                 )
             }
         }

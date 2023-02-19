@@ -1,6 +1,6 @@
 @use 'src/styles/vars' as v;
 
-.ring-slot{
+.ring-slot, .companion-slot, .cuff-slot{
     width: 50%;
     display: flex;
     align-items: flex-start;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Stuff from "../Stuff/Stuff";
+import StuffSlot from "../StuffSlot/StuffSlot";
 import Info from "../Info/Info";
 import Stats from "../Stats/Stats";
 import BuildList from "../BuildList/BuildList";
@@ -15,9 +15,9 @@ function App() {
 
   //Partie Info
   //changer le titre
-  const changeTitle = (e) => {
+  function updateBuildName(e) {
     setBuildName(e.target.value);
-  };
+  }
   //permet de trouver le label de la classe pour avoir les heros associés à cette classe
   function updateIndexHero(newIndex) {
     setindexHero(newIndex);
@@ -49,7 +49,7 @@ function App() {
       <h1 className="app-title">Waven builder</h1>
       {errorMessage && <p className="app-error"> {errorMessage} </p>}
       <div className="app-container">
-        <Stuff openRightPart={openItemArea} />
+        <StuffSlot openRightPart={openItemArea} />
         {itemType ? (
           <ItemArea
             type={itemType}
@@ -61,7 +61,7 @@ function App() {
           <>
             <Info
               buildName={buildName}
-              changeTitle={changeTitle}
+              updateBuildName={updateBuildName}
               indexHero={indexHero}
               updateIndexHero={updateIndexHero}
               errorMessage={handleErrorMessage}

@@ -1,11 +1,12 @@
 @use 'src/styles/vars' as v;
 
-.ring-list{
+.ring-list, .cuff-list, .companion-list{
     width: 65%;
     margin: v.$gutter;
     display: flex;
     flex-wrap: wrap;
     overflow: overlay;
+    align-items: flex-start;
 }
 .cross-ring{
     font-size: v.$font-title;

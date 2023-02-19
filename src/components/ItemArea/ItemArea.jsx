@@ -1,5 +1,5 @@
 import React from "react";
-import RingList from "../RingList/RingList";
+import ItemList from "../ItemList/ItemList";
 import PropTypes from "prop-types";
 import "./ItemArea.scss";
 
@@ -8,12 +8,19 @@ function ItemArea({ type, close, slotIndex, handleErrorMessage }) {
   switch (type) {
     case "ring":
       component = (
-        <RingList label={slotIndex} errorMessage={handleErrorMessage} />
+        <ItemList type={type} index={slotIndex} errorMessage={handleErrorMessage} />
       );
       break;
     case "cuff":
-      component = <div>Yo</div>;
+      component = (
+        <ItemList type={type} index={slotIndex} errorMessage={handleErrorMessage} />
+      );
       break;
+      case "companion":
+        component = (
+          <ItemList type={type} index={slotIndex} errorMessage={handleErrorMessage} />
+        );
+        break;
     default:
       return;
   }

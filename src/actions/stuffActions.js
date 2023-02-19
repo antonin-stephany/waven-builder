@@ -1,16 +1,16 @@
-export const SET_RING = 'SET_RING';
-export const DELETE_RING = 'DELETE_RING';
+export const SET_ITEM = 'SET_ITEM';
+export const DELETE_ITEM = 'DELETE_ITEM';
 
-export function actionSetRing({value, label}) {
+export function actionSetItem({value, index, type}) {
   return {
-    type: SET_RING,
-    payload: {value, label}
+    type: SET_ITEM,
+    payload: {value, index, type}
   };
 }
 
-export function actionDeleteRing(label) {
+export function actionDeleteItem({index, type}) {
   return {
-    type: DELETE_RING,
-    payload: label
+    type: DELETE_ITEM,
+    payload: {index, type}
   };
 }
