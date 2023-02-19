@@ -1,11 +1,12 @@
 @use 'src/styles/vars' as v;
 
-.ring-slot, .companion-slot, .cuff-slot{
+.item{
     width: 50%;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     padding: v.$gutter;
     border: 2px solid v.$color-line;
+    min-height: 200px;
     &:hover{
         cursor: pointer;
         background-color: v.$color-slot;
@@ -14,8 +15,52 @@
         padding: v.$gutter;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        height: 100%;
+        justify-content: flex-start;
+        min-height: 140px;
+        width: 100%;
+        &>p{
+            padding-bottom: v.$gutter/2;
+        }
+        &-title{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: v.$gutter;
+            & h2{
+                font-weight: bold;
+                font-size: v.$font-title-item;
+            }
+            & span{
+                background-color: v.$color-background-title;
+                padding: 3px;
+                border-radius: v.$round;
+                color: v.$color-slot;
+            }
+        }
+        &-container-carac{
+            position: relative;
+            &-tabs{
+                display: flex;
+                & .tab{
+                    padding: 5px;
+                   border-bottom: 1px solid v.$color-tabs;
+                }
+                & .active-tab{
+                    border-bottom: 2px solid v.$color-tabs-active;
+                }
+            }
+            & .content{
+                display: none;
+                height:75px;
+                padding: v.$gutter;
+                & div p{
+                    line-height: 1.2em;
+                }
+            }
+            & .active-content{
+                display: block;
+            }
+        }
     }
 
 }
