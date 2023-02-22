@@ -11,7 +11,6 @@ function Info({buildName, updateBuildName, indexHero, updateIndexHero, errorMess
 
     const level = useSelector((fullState) => fullState.character.level);
     const classes = useSelector((fullState) => fullState.character.classes);
-
     const hero = useSelector((fullState) => fullState.character.hero);
     const dispatch = useDispatch();
     const handleSubmit = (e) => {
