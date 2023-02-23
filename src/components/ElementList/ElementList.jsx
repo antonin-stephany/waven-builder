@@ -30,6 +30,10 @@ function ElementList({ index, errorMessage, type }) {
               label={spell.label}
               classes={spell.classes}
               description={spell.description}
+              cost={spell.cost}
+              gift_ap={spell.gift_ap}
+              load={spell.load}
+              gifts={spell.gifts}
             />
           ))}
         </>

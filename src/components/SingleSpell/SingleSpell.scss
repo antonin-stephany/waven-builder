@@ -1,0 +1,40 @@
+@use 'src/styles/vars' as v;
+
+.spell{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    padding: v.$gutter;
+    border: 2px solid v.$color-line;
+    &:hover{
+        cursor: pointer;
+        background-color: v.$color-slot;
+    }
+    &-content{
+        padding: v.$gutter;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 100%;
+        & h2{
+            font-weight: bold;
+            font-size: 1.3em;
+            padding-bottom: v.$gutter/2;
+        }
+        & p:first-of-type{
+            padding-bottom: v.$gutter/2;
+        }
+    }
+    &-img{
+        position: relative;
+        & img{
+            width: 100px;
+        }
+    }
+    &-gifts{
+        display: none;
+        &.active{
+            display: block;
+        }
+    }
+}

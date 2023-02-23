@@ -5,7 +5,7 @@ import './SingleSpellSlot.scss';
 function SingleSpellSlot({value, index, openModal}) {
     return (
         <div 
-            className="spell"
+            className="spell-slot"
             onClick={() => openModal("spell", index)}
         >   
         {!!value && (

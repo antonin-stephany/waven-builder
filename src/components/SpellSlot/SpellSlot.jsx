@@ -7,7 +7,7 @@ import { useSelector} from "react-redux";
 function SpellSlot({openLeftPart}) {
     const spells = useSelector((fullState) => fullState.spells.spells);
     return (
-        <div className="spells">
+        <div className="spells-slot">
             {spells.map((spell, i) => (
                 <SingleSpellSlot 
                     openModal={openLeftPart}
