@@ -2,12 +2,19 @@
 
 .ring-list, .cuff-list, .companion-list{
     width: 65%;
+}
+.spell-list{
+    width: calc(100% - 258px - 3rem);
+}
+
+.list{
     margin: v.$gutter;
     display: flex;
     flex-wrap: wrap;
     overflow: overlay;
     align-items: flex-start;
 }
+
 .cross-ring{
     font-size: v.$font-title;
     background-color: v.$color-cross;
