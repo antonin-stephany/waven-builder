@@ -1,3 +1,5 @@
+import { SET_SPELL, DELETE_SPELL } from '../actions/spellActions.js';
+
 export const initialStateSpells = {
     spells:[
         {value:''},
@@ -22,7 +24,22 @@ export const initialStateSpells = {
 // Du coup il faut aussi donner une valeur par defaut à l'action
 const spellsReducer = (state = initialStateSpells, action = {}) => { // <=== 
     switch(action.type){
-
+        case SET_SPELL: {
+            return {
+                ...state,
+                spells: state.spells.map(
+                   (spell, i) => i === action.payload.index ? {...spell, value: action.payload.value}:spell
+                )
+            };
+        }
+        case DELETE_SPELL: {
+            return {
+                ...state,
+                spells: state.spells.map(
+                   (spell, i) => i === action.payload ? {...spell, value: ''}:spell
+                )
+            }
+        }
         default: 
             return state; // <=== Dans le default, pas de throw Error, il faut retourner le state.
     }

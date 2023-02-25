@@ -6,6 +6,7 @@ import { useSelector} from "react-redux";
 
 function SpellSlot({openLeftPart}) {
     const spells = useSelector((fullState) => fullState.spells.spells);
+    const classes = useSelector((fullState) => fullState.character.classes);
     return (
         <div className="spells-slot">
             {spells.map((spell, i) => (
@@ -14,6 +15,7 @@ function SpellSlot({openLeftPart}) {
                     key={i}
                     index={i}
                     value={spell.value}
+                    classes={classes}
                 />
             ))}       
         </div>

@@ -10,6 +10,38 @@
         cursor: pointer;
         background-color: v.$color-slot;
     }
+    &-img{
+        position: relative;
+        &_spell{
+            width: 100px;
+        }
+        &_cost, &_ap, &_load{
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            & img{
+                position: absolute;
+            }
+        }
+        &_cost{
+            left: 5px;
+            top: 0px;
+        }
+        &_ap{
+            left: 5px;
+            & img:first-of-type{
+                width: 40px;
+            }
+        }
+        &_load{
+            right: 5px;
+            top: 0px;
+            & img:first-of-type{
+                width: 35px;
+            }
+        }
+    }
     &-content{
         padding: v.$gutter;
         display: flex;
@@ -21,20 +53,53 @@
             font-size: 1.3em;
             padding-bottom: v.$gutter/2;
         }
-        & p:first-of-type{
+        & h3{
+            z-index: 100;
+            display: inline;
+            padding-right: 10px;
+            font-weight: bold;
+        }
+        &_description{
             padding-bottom: v.$gutter/2;
+            height: 50px;
+            opacity: 0;
+            transition: 0.2s ease-out;
+            &.active{
+                opacity: 1;
+                transition: 0.2s ease-out;
+            }
         }
-    }
-    &-img{
-        position: relative;
-        & img{
-            width: 100px;
+        &_gift-block{
+            transition: 0.3s ease-out;
+            &.active{
+                transform: translateY(-50px);
+                transition: 0.3s ease-out;
+                height: 22px; // h3 + gutter size 
+            }
+            & .arrow {
+                border: solid black;
+                border-width: 0 3px 3px 0;
+                display: inline-block;
+                padding: 3px;
+                transform: rotate(-135deg);
+                margin-left: 10px;
+                margin-bottom: -2px;
+                &.active{
+                    transform: rotate(45deg);
+                    margin-bottom: 2px;
+                }
+            }
         }
-    }
-    &-gifts{
-        display: none;
-        &.active{
-            display: block;
+        &_gifts{
+            height: 0px;
+            opacity: 0;
+            transition: 0.2s ease-out;
+            padding-top: v.$gutter/2;
+            &.active{
+                height: auto;
+                opacity: 1;
+                transition: 0.2s ease-out; 
+            }
         }
     }
 }
