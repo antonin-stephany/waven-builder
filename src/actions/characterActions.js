@@ -1,12 +1,12 @@
 
-export const SAVE_BUILD = 'SAVE_BUILD';
+export const SET_TITLE = 'SET_TITLE';
 export const SET_LEVEL = 'SET_LEVEL';
 export const SET_CLASS = 'SET_CLASS';
 export const SET_HERO = 'SET_HERO';
 
-export function actionSaveBuild(title) {
+export function actionSetTitle(title) {
   return {
-    type: SAVE_BUILD,
+    type: SET_TITLE,
     payload: title,
   };
 }

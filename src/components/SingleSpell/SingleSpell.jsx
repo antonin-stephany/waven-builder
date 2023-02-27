@@ -9,7 +9,8 @@ function SingleSpell({ value, label, classes, description, gifts, cost, load, gi
   const spells = useSelector((fullState) => fullState.spells);
   const dispatch = useDispatch();
   const [giftactive, setGiftactive] = useState(false);
-  function openGift(){
+  function openGift(event){
+    event.stopPropagation();
     setGiftactive(!giftactive)
   }
   function addSpell(){

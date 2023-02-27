@@ -1,4 +1,4 @@
-import { SET_SPELL, DELETE_SPELL } from '../actions/spellActions.js';
+import { SET_SPELL, DELETE_SPELL, DELETE_ALL } from '../actions/spellActions.js';
 
 export const initialStateSpells = {
     spells:[
@@ -38,7 +38,12 @@ const spellsReducer = (state = initialStateSpells, action = {}) => { // <===
                 spells: state.spells.map(
                    (spell, i) => i === action.payload ? {...spell, value: ''}:spell
                 )
-            }
+            };
+        }
+        case DELETE_ALL: {
+            return {
+                ...initialStateSpells,
+            };
         }
         default: 
             return state; // <=== Dans le default, pas de throw Error, il faut retourner le state.

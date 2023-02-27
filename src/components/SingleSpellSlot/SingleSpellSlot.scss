@@ -1,6 +1,7 @@
 @use "src/styles/vars" as v;
 
 .spell-slot{
+    position: relative;
     background-color: #ffffff;
     cursor: pointer;
     width: 70px;
@@ -8,5 +9,25 @@
     margin:v.$gutter/2;
     & img{
         height: 70px;
+    }
+}
+.delete-spell {
+    font-size: 0.9em;
+    background-color: red;
+    color: white;
+    position: absolute;
+    padding: 0 4px;
+    z-index: 1;
+    width: 15px;
+    margin: 5px;
+    left: calc(100% - 15px);
+    bottom: calc(100% - 14px);
+    border: 0;
+    &:after{
+        display: inline-block;
+        content: "\00d7"; /* This will render the 'X' */
+    }
+    &:hover{
+        cursor: pointer;
     }
 }

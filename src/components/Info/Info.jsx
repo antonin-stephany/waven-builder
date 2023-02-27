@@ -4,7 +4,9 @@ import './Info.scss';
 import DropDown from '../DropDown/DropDown';
 import dataCharacter from '../../data/classes';
 import { useDispatch, useSelector } from 'react-redux';
-import { actionSaveBuild, actionSetLevel, actionSetClass, actionSetHero } from '../../actions/characterActions'
+import { actionSetTitle, actionSetLevel, actionSetClass, actionSetHero } from '../../actions/characterActions'
+import { actionDeleteAll } from '../../actions/spellActions'
+import { actionSaveBuild } from '../../actions/buildActions';
 
 
 function Info({buildName, updateBuildName, indexHero, updateIndexHero, errorMessage}) {
@@ -12,18 +14,24 @@ function Info({buildName, updateBuildName, indexHero, updateIndexHero, errorMess
     const level = useSelector((fullState) => fullState.character.level);
     const classes = useSelector((fullState) => fullState.character.classes);
     const hero = useSelector((fullState) => fullState.character.hero);
+   // const spells = useSelector((fullState) => fullState.spells.spells)
     const dispatch = useDispatch();
     const handleSubmit = (e) => {
         e.preventDefault();
 
         if (!buildName.trim()) {
             errorMessage("Veuillez choisir un nom pour votre build")
-          return; 
+            return; 
           // pour ne pas envoyer le build si c'est vide.
         }
-        dispatch(
-          actionSaveBuild(buildName),
-        );
+        /*const spellSet = spells.filter(spell => spell.value.length > 0);
+        if(spellSet.length<9){
+            errorMessage("Il vous faut au minimum 9 sorts")
+            return;
+        }*/
+        dispatch(actionSetTitle(buildName));
+        dispatch(actionSaveBuild());
+        
      };
 
     const handleOnchangeClass = (e) =>  {
@@ -34,6 +42,13 @@ function Info({buildName, updateBuildName, indexHero, updateIndexHero, errorMess
         updateIndexHero(newIndex);
         //change la valeur de l'hero par défaut 
         dispatch(actionSetHero(dataCharacter[newIndex].heros[0].value));
+        //supprime tous les sorts
+        dispatch(actionDeleteAll())
+    }
+    const handleOnchangeHero = (e) =>  {
+        dispatch(actionSetHero(e.target.value))
+        //supprime tous les sorts
+        dispatch(actionDeleteAll())
     }
 
     return (
@@ -56,7 +71,7 @@ function Info({buildName, updateBuildName, indexHero, updateIndexHero, errorMess
                 />
                 <DropDown 
                     value={hero}
-                    onChange={(e) => dispatch(actionSetHero(e.target.value))}
+                    onChange={handleOnchangeHero}
                     options={dataCharacter[indexHero].heros} 
                 />
                 <input 
