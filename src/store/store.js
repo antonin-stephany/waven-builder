@@ -1,15 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import characterReducer from '../reducers/characterReducer';
-import stuffReducer from '../reducers/stuffReducer';
-import spellsReducer from '../reducers/spellsReducer';
-import buildReducer from '../reducers/buildReducer';
+import buildsReducer from '../reducers/buildsReducer';
 
 const store = configureStore({
   reducer: {
-    character: characterReducer,
-    stuff: stuffReducer,
-    spells: spellsReducer,
-    build: buildReducer,
-  },
+    allBuilds: buildsReducer,
+  }
 });
 export default store;

@@ -16,8 +16,8 @@ function ElementList({ index, errorMessage, type }) {
     companion: companionList,
     spell: spellList,
   }
-  const classSelected = useSelector((fullState) => fullState.character.classes);
-  const heroSelected = useSelector((fullState) => fullState.character.hero);
+  const classSelected = useSelector((fullState) => fullState.allBuilds.character.classes);
+  const heroSelected = useSelector((fullState) => fullState.allBuilds.character.hero);
   return (
     <>
       <div className={`${type}-list list`}>

@@ -5,12 +5,12 @@ import spellsReducer from './spellsReducer'
 import stuffReducer from './stuffReducer'
 import { SAVE_BUILD } from '../actions/buildActions.js';
 
-const buildReducer = reduceReducers(
+const buildsReducer = reduceReducers(
     combineReducers({
         character: characterReducer,
         spells: spellsReducer,
         stuff: stuffReducer,
-        builds: (state = [{character:"", spells:"", stuff:""}]) => state,
+        savedBuilds: (state = []) => state,
     }),
     // cross-cutting concerns because here `state` is the whole state tree
   (state, action = {}) => {
@@ -18,12 +18,14 @@ const buildReducer = reduceReducers(
       case SAVE_BUILD: {
         return {
             ...state,
-            builds: state.builds.map((build) => ({
-                      ...build,
-                      character: state.character, 
-                      spells: state.spells, 
-                      stuff: state.stuff
-                    }))
+            savedBuilds: [
+                      ...state.savedBuilds,
+                      {
+                        character: state.character, 
+                        spells: state.spells, 
+                        stuff: state.stuff
+                      }
+            ]
             
         }
       }
@@ -33,4 +35,4 @@ const buildReducer = reduceReducers(
   }
 );
 
-export default buildReducer
+export default buildsReducer

@@ -1,13 +1,24 @@
 import React from 'react';
+import SingleBuild from "../SingleBuild/SingleBuild";
+import "./BuildList.scss";
+import { useSelector } from 'react-redux';
 
-function CharactersList() {
+function BuildList() {
+  const savedBuilds = useSelector((fullState) => fullState.allBuilds.savedBuilds);
   return (
-    <div className="characters-list">
+    <div className="build-list">
+    {savedBuilds.map((build) => (
+      <SingleBuild
+      //SOUCI D'ID
+        key={build.character.title}
+        character={build.character}
+       />
+    ))}
     </div>
   );
 }
-CharactersList.propTypes = {};
+BuildList.propTypes = {};
 
-CharactersList.defaultProps = {};
+BuildList.defaultProps = {};
 
-export default React.memo(CharactersList);
+export default React.memo(BuildList);

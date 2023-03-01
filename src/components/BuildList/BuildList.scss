@@ -1,0 +1,17 @@
+@use 'src/styles/vars' as v;
+
+.build {
+    &-list{
+    width: 90vw;
+    border-radius: v.$round;
+    margin: v.$gutter*2 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    }
+    &-container{
+        background-color: v.$color-background;
+        padding: v.$gutter;
+        margin-top: v.$gutter;
+    }
+  }

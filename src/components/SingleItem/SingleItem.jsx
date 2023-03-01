@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionSetItem } from "../../actions/stuffActions";
 
 function SingleItem({ value, description, rare, stats, gifts, index, errorMessage, type, label}) {
-  const stuff = useSelector((fullState) => fullState.stuff);
+  const stuff = useSelector((fullState) => fullState.allBuilds.stuff);
   const dispatch = useDispatch();
   function addItem() {
     const testSameItem = stuff[type].find((item) => item.value === value);

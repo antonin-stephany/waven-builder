@@ -5,8 +5,8 @@ import SingleSpellSlot from "../SingleSpellSlot/SingleSpellSlot";
 import { useSelector} from "react-redux";
 
 function SpellSlot({openLeftPart}) {
-    const spells = useSelector((fullState) => fullState.spells.spells);
-    const classes = useSelector((fullState) => fullState.character.classes);
+    const spells = useSelector((fullState) => fullState.allBuilds.spells.spells);
+    const classes = useSelector((fullState) => fullState.allBuilds.character.classes);
     return (
         <div className="spells-slot">
             {spells.map((spell, i) => (

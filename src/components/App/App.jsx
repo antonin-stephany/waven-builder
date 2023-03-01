@@ -89,15 +89,13 @@ function App() {
   }
 
   return (
-    <div className="app">
-      <h1 className="app-title">Waven builder</h1>
-      {errorMessage && <p className="app-error"> {errorMessage} </p>}
-      <div className="app-container">    
+    <div className="main">
+      <h1 className="main-title">Waven builder</h1>
+      {errorMessage && <p className="main-error"> {errorMessage} </p>}
+      <div className="main-container">    
         {app}
       </div>
-      <div className="build-container">
-        <BuildList />
-      </div>
+      <BuildList />
     </div>
   );
 }

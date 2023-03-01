@@ -11,9 +11,9 @@ import { actionSaveBuild } from '../../actions/buildActions';
 
 function Info({buildName, updateBuildName, indexHero, updateIndexHero, errorMessage}) {
 
-    const level = useSelector((fullState) => fullState.character.level);
-    const classes = useSelector((fullState) => fullState.character.classes);
-    const hero = useSelector((fullState) => fullState.character.hero);
+    const level = useSelector((fullState) => fullState.allBuilds.character.level);
+    const classes = useSelector((fullState) => fullState.allBuilds.character.classes);
+    const hero = useSelector((fullState) => fullState.allBuilds.character.hero);
    // const spells = useSelector((fullState) => fullState.spells.spells)
     const dispatch = useDispatch();
     const handleSubmit = (e) => {

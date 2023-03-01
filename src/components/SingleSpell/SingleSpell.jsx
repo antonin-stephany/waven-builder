@@ -6,7 +6,7 @@ import { actionSetSpell } from "../../actions/spellActions";
 
 
 function SingleSpell({ value, label, classes, description, gifts, cost, load, gift_ap, element, errorMessage, index}) {
-  const spells = useSelector((fullState) => fullState.spells);
+  const spells = useSelector((fullState) => fullState.allBuilds.spells);
   const dispatch = useDispatch();
   const [giftactive, setGiftactive] = useState(false);
   function openGift(event){
