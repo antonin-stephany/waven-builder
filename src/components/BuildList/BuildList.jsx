@@ -9,15 +9,17 @@ function BuildList() {
     <div className="build-list">
     {savedBuilds.map((build) => (
       <SingleBuild
-      //SOUCI D'ID
-        key={build.character.title}
+        key={build.id}
         character={build.character}
+        stuff={build.stuff}
+        spells={build.spells.spells}
        />
     ))}
     </div>
   );
 }
-BuildList.propTypes = {};
+BuildList.propTypes = {
+};
 
 BuildList.defaultProps = {};
 

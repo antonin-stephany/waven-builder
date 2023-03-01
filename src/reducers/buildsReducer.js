@@ -3,6 +3,7 @@ import reduceReducers from 'reduce-reducers';
 import characterReducer from './characterReducer'
 import spellsReducer from './spellsReducer'
 import stuffReducer from './stuffReducer'
+import uniqid from 'uniqid';
 import { SAVE_BUILD } from '../actions/buildActions.js';
 
 const buildsReducer = reduceReducers(
@@ -21,6 +22,7 @@ const buildsReducer = reduceReducers(
             savedBuilds: [
                       ...state.savedBuilds,
                       {
+                        id: uniqid(),
                         character: state.character, 
                         spells: state.spells, 
                         stuff: state.stuff

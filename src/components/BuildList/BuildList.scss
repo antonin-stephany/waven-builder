@@ -13,5 +13,8 @@
         background-color: v.$color-background;
         padding: v.$gutter;
         margin-top: v.$gutter;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
   }
