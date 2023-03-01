@@ -57,6 +57,82 @@ export default [
             }
         ]
     },{
+        value: 'fleche-immolante',
+        label: `Flèche Immolante`,
+        classes: 'cra',
+        hero:'',
+        description:'Inflige 21 dégâts magiques.',
+        element: 'fire',
+        cost: 3,
+        gift_ap: 0,
+        load: 1,
+        gifts: [
+            {
+                description:'+30% aux DÉGÂTS de ce sort',
+            },{
+                description:'CRITIQUE : +5% de MAGIE FEU à votre héros jusqu’à la fin du combat',         
+            },{
+                description: '+15% CC à ce sort',
+            }
+        ]
+    },{
+        value: 'fleche-agressive',
+        label: `Flèche Agressive`,
+        classes: 'cra',
+        hero:'',
+        description:'Inflige 21 dégâts magiques dans la zone [Carré 1].',
+        element: 'fire',
+        cost: 4,
+        gift_ap: 0,
+        load: 1,
+        gifts: [
+            {
+                description:'+30% aux DÉGÂTS de ce sort',
+            },{
+                description:'CRITIQUE : +50% aux DÉGÂTS de ce sort',         
+            },{
+                description: '+15% CC à ce sort',
+            }
+        ]
+    },{
+        value: 'fleche-enflammee',
+        label: `Flèche Enflammée`,
+        classes: 'cra',
+        hero:'',
+        description:'Inflige 26 dégâts magiques et applique HUILÉ.',
+        element: 'fire',
+        cost: 4,
+        gift_ap: 0,
+        load: 1,
+        gifts: [
+            {
+                description:'+30% aux DÉGÂTS de ce sort',
+            },{
+                description:'CRITIQUE : Piochez 1 sort FEU. La cible déclenche EXPLOSION (8)',         
+            },{
+                description: '+15% CC à ce sort',
+            }
+        ]
+    },{
+        value: 'fleche-detonante',
+        label: `Flèche Détonante`,
+        classes: 'cra',
+        hero:'',
+        description:'Inflige 22 dégâts magiques. COMBO : Inflige 10 dégâts magiques aux adversaires autour de la cible',
+        element: 'fire',
+        cost: 5,
+        gift_ap: 1,
+        load: 1,
+        gifts: [
+            {
+                description:'+30% aux DÉGÂTS de ce sort',
+            },{
+                description:'CRITIQUE : +5% de MAGIE FEU à votre héros jusqu’à la fin du combat',         
+            },{
+                description: '+15% CC à ce sort',
+            }
+        ]
+    },{
         value: 'impact-ardent',
         label: `Impact Ardent`,
         classes: 'cra',
@@ -70,7 +146,26 @@ export default [
             {
                 description:'+30% aux DÉGÂTS de ce sort',
             },{
-                description:'CRITIQUE : Déclenche EXPLOSION (8).',         
+                description:'CRITIQUE : Déclenche EXPLOSION (8)',         
+            },{
+                description: '+15% CC à ce sort',
+            }
+        ]
+    },{
+        value: 'impact-nebuleux',
+        label: `Impact Nébuleux`,
+        classes: 'cra',
+        hero:'arc-piven',
+        description:'Inflige 32 dégâts magiques aux adversaires adjacents à votre héros et les REPOUSSE de 2 cases',
+        element: 'wind',
+        cost: 6,
+        gift_ap: 0,
+        load: 2,
+        gifts: [
+            {
+                description:'+30% aux DÉGÂTS de ce sort',
+            },{
+                description:'CRITIQUE : Ce sort revient dans votre main. Il coûte -1 PA',         
             },{
                 description: '+15% CC à ce sort',
             }
