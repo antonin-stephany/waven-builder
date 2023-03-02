@@ -1,7 +1,7 @@
 @use 'src/styles/vars' as v;
 
 .build {
-    &-list{
+    &-list-container{
     width: 90vw;
     border-radius: v.$round;
     margin: v.$gutter*2 auto;
@@ -11,10 +11,10 @@
     }
     &-container{
         background-color: v.$color-background;
-        padding: v.$gutter;
-        margin-top: v.$gutter;
+        margin-top: v.$gutter*2.5;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding-left: 170px;
     }
   }

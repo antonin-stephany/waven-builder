@@ -1,3 +1,27 @@
 .build-stuff{
     display: flex;
 }
+.build-img-hero{
+    position: absolute;
+    height: 110px;
+    left: 30px;
+    top: calc(2em - 18px);
+}
+.build-list{
+    position: relative;
+}
+
+.cross-close-build{
+    border: 0;
+    background-color: red;
+    color: white;
+    position: absolute;
+    padding: 0 4px;
+    z-index: 1;
+    right: -8px;
+    top: calc(0px + 2rem);
+    &:after {
+        display: inline-block;
+        content: "\00d7"; /* This will render the 'X' */
+      }
+}

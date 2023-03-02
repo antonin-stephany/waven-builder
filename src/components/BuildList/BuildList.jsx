@@ -6,10 +6,11 @@ import { useSelector } from 'react-redux';
 function BuildList() {
   const savedBuilds = useSelector((fullState) => fullState.allBuilds.savedBuilds);
   return (
-    <div className="build-list">
-    {savedBuilds.map((build) => (
+    <div className="build-list-container">
+    {savedBuilds.map((build, i) => (
       <SingleBuild
         key={build.id}
+        index={i}
         character={build.character}
         stuff={build.stuff}
         spells={build.spells.spells}

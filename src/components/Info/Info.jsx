@@ -81,7 +81,7 @@ function Info({buildName, updateBuildName, indexHero, updateIndexHero, errorMess
                 min="1"
                 max="100" 
                 value={level}
-                onChange={(e) => dispatch(actionSetLevel(e.target.value))}
+                onChange={(e) => dispatch(actionSetLevel(parseInt(e.target.value)))}
                 />
                
             </div>
