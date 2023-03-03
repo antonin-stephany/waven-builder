@@ -13,8 +13,8 @@ function App() {
   const [slotIndex, setSlotIndex] = useState(0);
   const [elementType, setElementType] = useState(undefined);
 
-  function updateBuildName(e) {
-    setBuildName(e.target.value);
+  function updateBuildName(title) {
+    setBuildName(title);
   }
   
   function updateIndexHero(newIndex) {
@@ -95,7 +95,9 @@ function App() {
       <div className="main-container">    
         {app}
       </div>
-      <BuildList />
+      <BuildList 
+        updateBuildName={updateBuildName}
+      />
     </div>
   );
 }

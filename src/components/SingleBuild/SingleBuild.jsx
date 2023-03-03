@@ -1,20 +1,34 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from "prop-types";
 import "./SingleBuild.scss";
 import SingleBuildElement from "../SingleBuildElement/SingleBuildElement";
-import { useDispatch } from "react-redux";
-import { actionDeleteBuild } from "../../actions/buildActions";
+import { useDispatch, useSelector } from "react-redux";
+import { actionDeleteBuild, actionSetBuild } from "../../actions/buildActions";
 
-function SingleBuild({character, stuff, spells, index}) {
-  const itemTypes = ["ring","cuff","companion","spells"]
+function SingleBuild({character, stuff, spells, index, updateBuildName}) {
+  const itemTypes = ["ring","cuff","companion","spells"];
+  const title = useSelector((fullState) => fullState.allBuilds.saveBuilds[index].character.title);
+  useEffect(()=>{
+    if (!title){
+       alert('You have to login to see this page');
+       console.log('here');
+    }
+ 
+ },[title]);
   const dispatch = useDispatch();
   function deleteBuild(event, index) {
     event.stopPropagation();
     dispatch(actionDeleteBuild(index));
   }
+  function setBuild(index){
+    dispatch(actionSetBuild(index));
+    updateBuildName(title);
+  }
   return (
     <>
-      <div className="build-list">
+      <div className="build-list" onClick={() => {
+                  setBuild(index);
+                }}>
         <img className="build-img-hero" src={`./assets/logo/${character.classes}/${character.hero}.png`} />
         <div className="build-container">
             <h2>{character.title}</h2>
@@ -42,6 +56,7 @@ function SingleBuild({character, stuff, spells, index}) {
   );
 }
 SingleBuild.propTypes = {
+    updateBuildName: PropTypes.func.isRequired,
     index : PropTypes.number.isRequired,
     character: PropTypes.shape({
           classes: PropTypes.string.isRequired,

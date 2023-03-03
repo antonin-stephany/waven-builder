@@ -4,10 +4,11 @@ import characterReducer from './characterReducer'
 import spellsReducer from './spellsReducer'
 import stuffReducer from './stuffReducer'
 import uniqid from 'uniqid';
-import { SAVE_BUILD, DELETE_BUILD } from '../actions/buildActions.js';
+import { SAVE_BUILD, DELETE_BUILD, SET_BUILD } from '../actions/buildActions.js';
 
 const buildsReducer = reduceReducers(
     combineReducers({
+        id: (state = "") => state,
         character: characterReducer,
         spells: spellsReducer,
         stuff: stuffReducer,
@@ -35,6 +36,14 @@ const buildsReducer = reduceReducers(
           ...state,
           savedBuilds: state.savedBuilds.filter((_, i) => i !== action.payload)
        }
+      }
+      case SET_BUILD: {
+        return {
+            ...state.savedBuilds.filter((_, i) => i == action.payload).reduce(function(_, values){
+              return values
+            },{}),
+            savedBuilds: state.savedBuilds.filter((_, i) => i !== action.payload)
+        }
       }
       default: 
       return state; // <=== Dans le default, pas de throw Error, il faut retourner le state.

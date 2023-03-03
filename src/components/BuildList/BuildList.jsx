@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import SingleBuild from "../SingleBuild/SingleBuild";
 import "./BuildList.scss";
 import { useSelector } from 'react-redux';
 
-function BuildList() {
+function BuildList({updateBuildName}) {
   const savedBuilds = useSelector((fullState) => fullState.allBuilds.savedBuilds);
   return (
     <div className="build-list-container">
@@ -11,6 +12,7 @@ function BuildList() {
       <SingleBuild
         key={build.id}
         index={i}
+        updateBuildName={updateBuildName}
         character={build.character}
         stuff={build.stuff}
         spells={build.spells.spells}
@@ -20,6 +22,7 @@ function BuildList() {
   );
 }
 BuildList.propTypes = {
+  updateBuildName: PropTypes.func.isRequired,
 };
 
 BuildList.defaultProps = {};

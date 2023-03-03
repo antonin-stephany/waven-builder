@@ -58,7 +58,7 @@ function Info({buildName, updateBuildName, indexHero, updateIndexHero, errorMess
                 placeholder="Nom du build" 
                 className="title"  
                 value={buildName}
-                onChange={updateBuildName}
+                onChange={(e) => updateBuildName(e.target.value)}
             />
             <div className="icon-class">
 
