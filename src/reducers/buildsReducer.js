@@ -20,11 +20,18 @@ const buildsReducer = reduceReducers(
       case SAVE_BUILD: {
         return {
             ...state,
+            character: {
+              ...state.character,
+              title: action.payload
+            },
             savedBuilds: [
                       ...state.savedBuilds,
                       {
                         id: uniqid(),
-                        character: state.character, 
+                        character:{
+                          ...state.character,
+                          title:action.payload
+                        },
                         spells: state.spells, 
                         stuff: state.stuff
                       }
@@ -39,10 +46,8 @@ const buildsReducer = reduceReducers(
       }
       case SET_BUILD: {
         return {
-            ...state.savedBuilds.filter((_, i) => i == action.payload).reduce(function(_, values){
-              return values
-            },{}),
-            savedBuilds: state.savedBuilds.filter((_, i) => i !== action.payload)
+          ...state.savedBuilds[action.payload],
+            savedBuilds: state.savedBuilds
         }
       }
       default: 

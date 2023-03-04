@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import PropTypes from "prop-types";
 import "./SingleBuild.scss";
 import SingleBuildElement from "../SingleBuildElement/SingleBuildElement";
@@ -7,28 +7,20 @@ import { actionDeleteBuild, actionSetBuild } from "../../actions/buildActions";
 
 function SingleBuild({character, stuff, spells, index, updateBuildName}) {
   const itemTypes = ["ring","cuff","companion","spells"];
-  const title = useSelector((fullState) => fullState.allBuilds.saveBuilds[index].character.title);
-  useEffect(()=>{
-    if (!title){
-       alert('You have to login to see this page');
-       console.log('here');
-    }
- 
- },[title]);
+  const title = useSelector((fullState) => fullState.allBuilds.savedBuilds[index].character.title) ?? '';
+
   const dispatch = useDispatch();
   function deleteBuild(event, index) {
     event.stopPropagation();
     dispatch(actionDeleteBuild(index));
   }
   function setBuild(index){
+    updateBuildName(title)
     dispatch(actionSetBuild(index));
-    updateBuildName(title);
   }
   return (
     <>
-      <div className="build-list" onClick={() => {
-                  setBuild(index);
-                }}>
+      <div className="build-list" onClick={() => setBuild(index)}>
         <img className="build-img-hero" src={`./assets/logo/${character.classes}/${character.hero}.png`} />
         <div className="build-container">
             <h2>{character.title}</h2>

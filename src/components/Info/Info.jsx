@@ -4,7 +4,7 @@ import './Info.scss';
 import DropDown from '../DropDown/DropDown';
 import dataCharacter from '../../data/classes';
 import { useDispatch, useSelector } from 'react-redux';
-import { actionSetTitle, actionSetLevel, actionSetClass, actionSetHero } from '../../actions/characterActions'
+import { actionSetLevel, actionSetClass, actionSetHero } from '../../actions/characterActions'
 import { actionDeleteAll } from '../../actions/spellActions'
 import { actionSaveBuild } from '../../actions/buildActions';
 
@@ -14,6 +14,7 @@ function Info({buildName, updateBuildName, indexHero, updateIndexHero, errorMess
     const level = useSelector((fullState) => fullState.allBuilds.character.level);
     const classes = useSelector((fullState) => fullState.allBuilds.character.classes);
     const hero = useSelector((fullState) => fullState.allBuilds.character.hero);
+
    // const spells = useSelector((fullState) => fullState.spells.spells)
     const dispatch = useDispatch();
     const handleSubmit = (e) => {
@@ -29,8 +30,7 @@ function Info({buildName, updateBuildName, indexHero, updateIndexHero, errorMess
             errorMessage("Il vous faut au minimum 9 sorts")
             return;
         }*/
-        dispatch(actionSetTitle(buildName));
-        dispatch(actionSaveBuild());
+        dispatch(actionSaveBuild(buildName));
         
      };
 
