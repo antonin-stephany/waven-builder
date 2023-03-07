@@ -6,7 +6,7 @@ import dataCharacter from '../../data/classes';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionSetLevel, actionSetClass, actionSetHero } from '../../actions/characterActions'
 import { actionDeleteAll } from '../../actions/spellActions'
-import { actionSaveBuild, actionSaveAgainBuild } from '../../actions/buildActions';
+import { actionSaveBuild, actionSaveAgainBuild, actionNewBuild } from '../../actions/buildActions';
 import uniqid from 'uniqid';
 
 
@@ -20,7 +20,7 @@ function Info({buildName, updateBuildName, indexHero, updateIndexHero, errorMess
 
    // const spells = useSelector((fullState) => fullState.spells.spells)
     const dispatch = useDispatch();
-    const handleSubmit = (e) => {
+    function handleSaveBuild(e){
         e.preventDefault();
 
         if (!buildName.trim()) {
@@ -39,9 +39,8 @@ function Info({buildName, updateBuildName, indexHero, updateIndexHero, errorMess
             dispatch(actionSaveBuild(buildName, uniqid()));
             
         }      
-     };
-
-    const handleOnchangeClass = (e) =>  {
+    }
+    function handleOnchangeClass(e){
         //met à jour la classe
         dispatch(actionSetClass(e.target.value))
         //trouve l'index de la classe qui correspond à l'element selectionné et le met dans le state
@@ -52,55 +51,60 @@ function Info({buildName, updateBuildName, indexHero, updateIndexHero, errorMess
         //supprime tous les sorts
         dispatch(actionDeleteAll())
     }
-    const handleOnchangeHero = (e) =>  {
+    function handleOnchangeHero(e){
         dispatch(actionSetHero(e.target.value))
         //supprime tous les sorts
         dispatch(actionDeleteAll())
     }
+    function handleNewBuild(){
+        dispatch(actionNewBuild())
+        updateBuildName('')
+    }
 
     return (
-        <form className="info" onSubmit={handleSubmit}>
-            <input 
-                type="text" 
-                placeholder="Nom du build" 
-                className="title"  
-                value={buildName}
-                onChange={(e) => updateBuildName(e.target.value)}
-            />
-            <div className="icon-class">
-
-            </div>
-            <div className="class-level-container">
-                <DropDown 
-                    value={classes}
-                    onChange={handleOnchangeClass}
-                    options={dataCharacter} 
-                />
-                <DropDown 
-                    value={hero}
-                    onChange={handleOnchangeHero}
-                    options={dataCharacter[indexHero].heros} 
-                />
+            <section className="info" >
                 <input 
-                type="number" 
-                placeholder="Level" 
-                className="level" 
-                min="1"
-                max="100" 
-                value={level}
-                onChange={(e) => dispatch(actionSetLevel(parseInt(e.target.value)))}
+                    type="text" 
+                    placeholder="Nom du build" 
+                    className="title"  
+                    value={buildName}
+                    onChange={(e) => updateBuildName(e.target.value)}
                 />
-               
-            </div>
-            <img src={`./assets/logo/${classes}/${hero}.png`} />
- 
-            <button
-                type="submit"
-                className="build-save"
-            >
-                <p>Sauvegarder le build</p>
-            </button>
-        </form>
+                <div className="icon-class">
+
+                </div>
+                <div className="class-level-container">
+                    <DropDown 
+                        value={classes}
+                        onChange={handleOnchangeClass}
+                        options={dataCharacter} 
+                    />
+                    <DropDown 
+                        value={hero}
+                        onChange={handleOnchangeHero}
+                        options={dataCharacter[indexHero].heros} 
+                    />
+                    <input 
+                    type="number" 
+                    placeholder="Level" 
+                    className="level" 
+                    min="1"
+                    max="100" 
+                    value={level}
+                    onChange={(e) => dispatch(actionSetLevel(parseInt(e.target.value)))}
+                    />
+                
+                </div>
+                <img src={`./assets/logo/${classes}/${hero}.png`} />
+                <button onClick={handleSaveBuild}
+                    className="build-save"
+                >
+                    <p>Sauvegarder le build</p>
+                </button>
+                <button onClick={handleNewBuild}>
+                    <p>Nouveau build</p>
+                </button>
+            </section>
     );
 }
   

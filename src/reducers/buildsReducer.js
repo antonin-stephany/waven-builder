@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux'
 import reduceReducers from 'reduce-reducers';
 import characterReducer from './characterReducer'
-import spellsReducer from './spellsReducer'
-import stuffReducer from './stuffReducer'
-import { SAVE_BUILD, DELETE_BUILD, SET_BUILD, SAVE_AGAIN_BUILD } from '../actions/buildActions.js';
+import spellsReducer, { initialStateSpells } from './spellsReducer'
+import stuffReducer, { initialStateStuff } from './stuffReducer'
+import { SAVE_BUILD, DELETE_BUILD, SET_BUILD, SAVE_AGAIN_BUILD, NEW_BUILD } from '../actions/buildActions.js';
 
 const buildsReducer = reduceReducers(
     combineReducers({
-        id: (state = "") => state,
+        id: (state = '') => state,
         character: characterReducer,
         spells: spellsReducer,
         stuff: stuffReducer,
@@ -62,6 +62,18 @@ const buildsReducer = reduceReducers(
         return {
           ...state.savedBuilds[action.payload],
             savedBuilds: state.savedBuilds
+        }
+      }
+      case NEW_BUILD: {
+        return {
+          id:'',
+          character:{
+            ...state.character,
+            title:'',
+          },
+          spells: initialStateSpells,
+          stuff: initialStateStuff,
+          savedBuilds: state.savedBuilds
         }
       }
       default: 
