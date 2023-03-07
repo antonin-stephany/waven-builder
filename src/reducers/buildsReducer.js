@@ -3,8 +3,7 @@ import reduceReducers from 'reduce-reducers';
 import characterReducer from './characterReducer'
 import spellsReducer from './spellsReducer'
 import stuffReducer from './stuffReducer'
-import uniqid from 'uniqid';
-import { SAVE_BUILD, DELETE_BUILD, SET_BUILD } from '../actions/buildActions.js';
+import { SAVE_BUILD, DELETE_BUILD, SET_BUILD, SAVE_AGAIN_BUILD } from '../actions/buildActions.js';
 
 const buildsReducer = reduceReducers(
     combineReducers({
@@ -19,23 +18,38 @@ const buildsReducer = reduceReducers(
     switch (action.type) {
       case SAVE_BUILD: {
         return {
-            ...state,
+          ...state,
+            id: action.payload.id,
             character: {
               ...state.character,
-              title: action.payload
+              title: action.payload.title
             },
             savedBuilds: [
                       ...state.savedBuilds,
                       {
-                        id: uniqid(),
+                        id: action.payload.id,
                         character:{
                           ...state.character,
-                          title:action.payload
+                          title:action.payload.title
                         },
                         spells: state.spells, 
                         stuff: state.stuff
                       }
             ]       
+        }
+      }
+      case SAVE_AGAIN_BUILD: {
+        return {
+          ...state,
+          savedBuilds: state.savedBuilds.map((build) => build.id === action.payload.id ?  {
+            id: state.id, 
+            character:{
+              ...state.character,
+              title:action.payload.title
+            },
+            spells:state.spells, 
+            stuff:state.stuff
+          }: build)
         }
       }
       case DELETE_BUILD: {

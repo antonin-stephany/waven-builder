@@ -6,7 +6,8 @@ import dataCharacter from '../../data/classes';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionSetLevel, actionSetClass, actionSetHero } from '../../actions/characterActions'
 import { actionDeleteAll } from '../../actions/spellActions'
-import { actionSaveBuild } from '../../actions/buildActions';
+import { actionSaveBuild, actionSaveAgainBuild } from '../../actions/buildActions';
+import uniqid from 'uniqid';
 
 
 function Info({buildName, updateBuildName, indexHero, updateIndexHero, errorMessage}) {
@@ -14,6 +15,8 @@ function Info({buildName, updateBuildName, indexHero, updateIndexHero, errorMess
     const level = useSelector((fullState) => fullState.allBuilds.character.level);
     const classes = useSelector((fullState) => fullState.allBuilds.character.classes);
     const hero = useSelector((fullState) => fullState.allBuilds.character.hero);
+    const idBuild = useSelector((fullState) => fullState.allBuilds.id);
+    const savedBuilds = useSelector((fullState) => fullState.allBuilds.savedBuilds);
 
    // const spells = useSelector((fullState) => fullState.spells.spells)
     const dispatch = useDispatch();
@@ -23,15 +26,19 @@ function Info({buildName, updateBuildName, indexHero, updateIndexHero, errorMess
         if (!buildName.trim()) {
             errorMessage("Veuillez choisir un nom pour votre build")
             return; 
-          // pour ne pas envoyer le build si c'est vide.
         }
         /*const spellSet = spells.filter(spell => spell.value.length > 0);
         if(spellSet.length<9){
             errorMessage("Il vous faut au minimum 9 sorts")
             return;
         }*/
-        dispatch(actionSaveBuild(buildName));
-        
+
+        if(savedBuilds.some(build => build.id === idBuild)){
+            dispatch(actionSaveAgainBuild(buildName, idBuild));
+        }else{
+            dispatch(actionSaveBuild(buildName, uniqid()));
+            
+        }      
      };
 
     const handleOnchangeClass = (e) =>  {

@@ -17,6 +17,7 @@ function SingleBuild({character, stuff, spells, index, updateBuildName}) {
   function setBuild(index){
     updateBuildName(title)
     dispatch(actionSetBuild(index));
+    
   }
   return (
     <>
