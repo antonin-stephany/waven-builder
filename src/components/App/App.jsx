@@ -97,6 +97,7 @@ function App() {
       </div>
       <BuildList 
         updateBuildName={updateBuildName}
+        updateIndexHero={updateIndexHero}
       />
     </div>
   );

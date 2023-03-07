@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import "./SingleBuild.scss";
+import dataCharacter from '../../data/classes';
 import SingleBuildElement from "../SingleBuildElement/SingleBuildElement";
 import { useDispatch, useSelector } from "react-redux";
 import { actionDeleteBuild, actionSetBuild } from "../../actions/buildActions";
 
-function SingleBuild({character, stuff, spells, index, updateBuildName}) {
+function SingleBuild({character, stuff, spells, index, updateBuildName, updateIndexHero}) {
   const itemTypes = ["ring","cuff","companion","spells"];
-  const title = useSelector((fullState) => fullState.allBuilds.savedBuilds[index].character.title) ?? '';
+  const titleBuildSelected = useSelector((fullState) => fullState.allBuilds.savedBuilds[index].character.title) ?? '';
+  const classesBuildSelected = useSelector((fullState) => fullState.allBuilds.savedBuilds[index].character.classes) ?? '';
+
 
   const dispatch = useDispatch();
   function deleteBuild(event, index) {
@@ -15,7 +18,9 @@ function SingleBuild({character, stuff, spells, index, updateBuildName}) {
     dispatch(actionDeleteBuild(index));
   }
   function setBuild(index){
-    updateBuildName(title)
+    updateBuildName(titleBuildSelected);
+    const newIndex = dataCharacter.findIndex(element => element.value === classesBuildSelected);
+    updateIndexHero(newIndex);
     dispatch(actionSetBuild(index));
     
   }
@@ -50,6 +55,7 @@ function SingleBuild({character, stuff, spells, index, updateBuildName}) {
 }
 SingleBuild.propTypes = {
     updateBuildName: PropTypes.func.isRequired,
+    updateIndexHero: PropTypes.func.isRequired,
     index : PropTypes.number.isRequired,
     character: PropTypes.shape({
           classes: PropTypes.string.isRequired,
