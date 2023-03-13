@@ -2,4 +2,27 @@
 
 .info{
     margin:v.$gutter;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.title-level-container, .class-hero-container{
+    display: flex;
+    justify-content: space-between;
+    & input{
+        color: v.$color-background-title;
+        font-size: 20px;
+        background-color: v.$color-background;
+        border: 0;
+        border-bottom: 1px solid v.$color-input;
+        margin: v.$gutter;
+        &:first-child{
+            width: 100%;
+            height: 30px;
+        }
+        &::placeholder{
+            color: v.$color-input;
+        }
+    }
 }

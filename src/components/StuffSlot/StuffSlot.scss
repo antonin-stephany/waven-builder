@@ -3,7 +3,6 @@
 .stuff{
     display: flex;
     align-items: flex-end;
-    width: 35%;
 
     &-ring-slot, &-cuff-slot, &-companion-slot{
         position: relative;
@@ -13,6 +12,7 @@
         margin: v.$gutter;
         cursor: pointer;
         border: 0;
+        border-radius: v.$round;
         & img{
             width: 100%;
             padding: 2px;

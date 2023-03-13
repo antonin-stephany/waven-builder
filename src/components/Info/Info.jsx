@@ -63,17 +63,25 @@ function Info({buildName, updateBuildName, indexHero, updateIndexHero, errorMess
 
     return (
             <section className="info" >
-                <input 
-                    type="text" 
-                    placeholder="Nom du build" 
-                    className="title"  
-                    value={buildName}
-                    onChange={(e) => updateBuildName(e.target.value)}
-                />
-                <div className="icon-class">
-
+                <div className="title-level-container">
+                    <input 
+                        type="text" 
+                        placeholder="Nom du build" 
+                        className="title"  
+                        value={buildName}
+                        onChange={(e) => updateBuildName(e.target.value)}
+                    />
+                    <input 
+                        type="number" 
+                        placeholder="Level" 
+                        className="level" 
+                        min="1"
+                        max="100" 
+                        value={level}
+                        onChange={(e) => dispatch(actionSetLevel(parseInt(e.target.value)))}
+                    />
                 </div>
-                <div className="class-level-container">
+                <div className="class-hero-container">
                     <DropDown 
                         value={classes}
                         onChange={handleOnchangeClass}
@@ -83,27 +91,19 @@ function Info({buildName, updateBuildName, indexHero, updateIndexHero, errorMess
                         value={hero}
                         onChange={handleOnchangeHero}
                         options={dataCharacter[indexHero].heros} 
-                    />
-                    <input 
-                    type="number" 
-                    placeholder="Level" 
-                    className="level" 
-                    min="1"
-                    max="100" 
-                    value={level}
-                    onChange={(e) => dispatch(actionSetLevel(parseInt(e.target.value)))}
-                    />
-                
+                    />              
                 </div>
-                <img src={`./assets/logo/${classes}/${hero}.png`} />
-                <button onClick={handleSaveBuild}
-                    className="build-save"
-                >
-                    <p>Sauvegarder le build</p>
-                </button>
-                <button onClick={handleNewBuild}>
-                    <p>Nouveau build</p>
-                </button>
+                <img className="hero-img" src={`./assets/logo/${classes}/${hero}.png`} />
+                <div className="action-buttons">
+                    <button onClick={handleSaveBuild}
+                        className="build-save"
+                    >
+                        <p>Sauvegarder le build</p>
+                    </button>
+                    <button onClick={handleNewBuild}>
+                        <p>Nouveau build</p>
+                    </button>
+                </div>
             </section>
     );
 }

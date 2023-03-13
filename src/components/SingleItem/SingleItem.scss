@@ -12,7 +12,7 @@
         background-color: v.$color-slot;
     }
     &-content{
-        padding: v.$gutter;
+        padding-left: v.$gutter;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -51,7 +51,8 @@
             }
             & .content{
                 display: none;
-                padding: v.$gutter;
+                padding-top: v.$gutter/2;
+                min-height: 100px;
                 & div p{
                     line-height: 1.2em;
                 }
