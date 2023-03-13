@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./ElementList.scss";
 import SingleItem from "../SingleItem/SingleItem";
+import SingleSpell from "../SingleSpell/SingleSpell";
 import ringList from "../../data/rings";
 import companionList from "../../data/companions";
 import cuffList from "../../data/cuffs";
@@ -15,16 +16,28 @@ function ElementList({ index, errorMessage, type }) {
     companion: companionList,
     spell: spellList,
   }
-  const classSelected = useSelector((fullState) => fullState.character.classes);
+  const classSelected = useSelector((fullState) => fullState.allBuilds.character.classes);
+  const heroSelected = useSelector((fullState) => fullState.allBuilds.character.hero);
   return (
     <>
-      <div className={`${type}-list`}>
+      <div className={`${type}-list list`}>
        {type ==="spell" ? (
         <>
-          {elementList[type].filter(classes => classes.classes === `${classSelected}`).map((singleSpell) => (
-            <p
-              key={singleSpell.value}
-            >{singleSpell.label}</p>
+          {elementList[type].filter(classes => classes.classes === `${classSelected}` && classes.hero === '' || classes.hero === `${heroSelected}`).map((spell) => (
+            <SingleSpell
+              key={spell.value}
+              value={spell.value}
+              label={spell.label}
+              classes={spell.classes}
+              description={spell.description}
+              element={spell.element}
+              cost={spell.cost}
+              gift_ap={spell.gift_ap}
+              load={spell.load}
+              gifts={spell.gifts}
+              errorMessage={errorMessage}
+              index={index}
+            />
           ))}
         </>
        ):(

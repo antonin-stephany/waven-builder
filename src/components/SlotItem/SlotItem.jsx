@@ -6,7 +6,7 @@ import { actionDeleteItem } from "../../actions/stuffActions";
 
 function SlotItem({ openModal, type }) {
   const dispatch = useDispatch();
-  const stuff = useSelector((fullState) => fullState.stuff);
+  const stuff = useSelector((fullState) => fullState.allBuilds.stuff);
   function deleteItem(event, index, type) {
     event.stopPropagation();
     dispatch(actionDeleteItem({index, type}));

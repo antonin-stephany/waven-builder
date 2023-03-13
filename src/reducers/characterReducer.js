@@ -1,4 +1,4 @@
-import { SAVE_BUILD, SET_CLASS, SET_LEVEL, SET_HERO } from '../actions/characterActions';
+import { SET_CLASS, SET_LEVEL, SET_HERO } from '../actions/characterActions';
 import classes from '../data/classes';
 
 export const initialStateCharacter = {
@@ -12,12 +12,6 @@ export const initialStateCharacter = {
 // Du coup il faut aussi donner une valeur par defaut à l'action
 const characterReducer = (state = initialStateCharacter, action = {}) => { // <=== 
     switch(action.type){
-        case SAVE_BUILD: {
-            return {
-                ...state,
-                title: action.payload,
-            };
-        }
         case SET_LEVEL: {
             return {
                 ...state,

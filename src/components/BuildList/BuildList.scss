@@ -1,0 +1,20 @@
+@use 'src/styles/vars' as v;
+
+.build {
+    &-list-container{
+    width: 90vw;
+    border-radius: v.$round;
+    margin: v.$gutter*2 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    }
+    &-container{
+        background-color: v.$color-background;
+        margin-top: v.$gutter*2.5;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 170px;
+    }
+  }

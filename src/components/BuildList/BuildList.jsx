@@ -1,13 +1,32 @@
 import React from 'react';
+import PropTypes from "prop-types";
+import SingleBuild from "../SingleBuild/SingleBuild";
+import "./BuildList.scss";
+import { useSelector } from 'react-redux';
 
-function CharactersList() {
+function BuildList({updateBuildName, updateIndexHero}) {
+  const savedBuilds = useSelector((fullState) => fullState.allBuilds.savedBuilds);
   return (
-    <div className="characters-list">
+    <div className="build-list-container">
+    {savedBuilds.map((build, i) => (
+      <SingleBuild
+        key={build.id}
+        index={i}
+        updateBuildName={updateBuildName}
+        updateIndexHero={updateIndexHero}
+        character={build.character}
+        stuff={build.stuff}
+        spells={build.spells.spells}
+       />
+    ))}
     </div>
   );
 }
-CharactersList.propTypes = {};
+BuildList.propTypes = {
+  updateBuildName: PropTypes.func.isRequired,
+  updateIndexHero: PropTypes.func.isRequired,
+};
 
-CharactersList.defaultProps = {};
+BuildList.defaultProps = {};
 
-export default React.memo(CharactersList);
+export default React.memo(BuildList);
