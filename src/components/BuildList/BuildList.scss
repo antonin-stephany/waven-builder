@@ -9,6 +9,9 @@
     flex-direction: column;
     justify-content: space-between;
     }
+    &-list img{
+        cursor: pointer;
+    }
     &-container{
         background-color: v.$color-background;
         margin-top: v.$gutter*2.5;
@@ -17,5 +20,6 @@
         align-items: center;
         padding-left: 170px;
         border-radius: v.$round;
+        cursor: pointer;
     }
   }

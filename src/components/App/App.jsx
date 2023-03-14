@@ -47,7 +47,7 @@ function App() {
     case "cuff":
     case "companion":
       app = (
-        <>
+        <div className="main-container">  
           <StuffSlot openRightPart={openElementArea} />
           <ElementArea
               type={elementType}
@@ -55,12 +55,12 @@ function App() {
               slotIndex={slotIndex}
               handleErrorMessage={handleErrorMessage}
           />
-        </>
+        </div>
       );
       break;
     case "spell":
       app = (
-        <>
+        <div className="main-container">  
           <ElementArea
               type={elementType}
               close={closeItemArea}
@@ -68,12 +68,12 @@ function App() {
               handleErrorMessage={handleErrorMessage}
           />
           <SpellSlot openLeftPart={openElementArea} />
-        </>
+        </div>
       );
       break;
     default:
       app = ( 
-        <>
+        <div className="main-container active">  
           <StuffSlot openRightPart={openElementArea} />
           <Info
             buildName={buildName}
@@ -83,7 +83,7 @@ function App() {
             errorMessage={handleErrorMessage}
           />
           <SpellSlot openLeftPart={openElementArea} />
-        </>
+        </div>
       );
     
   }
@@ -91,10 +91,8 @@ function App() {
   return (
     <div className="main">
       <h1 className="main-title">Waven builder</h1>
-      {errorMessage && <p className="main-error"> {errorMessage} </p>}
-      <div className="main-container">    
+      {errorMessage && <p className="main-error"> {errorMessage} </p>}  
         {app}
-      </div>
       <BuildList 
         updateBuildName={updateBuildName}
         updateIndexHero={updateIndexHero}

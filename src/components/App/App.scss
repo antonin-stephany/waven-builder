@@ -22,6 +22,9 @@
     padding: v.$gutter;
     display: flex;
     justify-content: space-between;
+    &.active{
+      align-items: center;
+    }
   }
 
   &-error{

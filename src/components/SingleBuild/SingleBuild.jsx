@@ -26,9 +26,9 @@ function SingleBuild({character, stuff, spells, index, updateBuildName, updateIn
   }
   return (
     <>
-      <div className="build-list" onClick={() => setBuild(index)}>
-        <img className="build-img-hero" src={`./assets/logo/${character.classes}/${character.hero}.png`} />
-        <div className="build-container">
+      <div className="build-list">
+        <img className="build-img-hero" src={`./assets/logo/${character.classes}/${character.hero}.png`} onClick={() => setBuild(index)}/>
+        <div className="build-container" onClick={() => setBuild(index)} >
             <h2>{character.title}</h2>
             <span>{character.level}</span>
             <div className="build-stuff">
