@@ -91,7 +91,9 @@ function App() {
   return (
     <div className="main">
       <h1 className="main-title">Waven builder</h1>
-      {errorMessage && <p className="main-error"> {errorMessage} </p>}  
+      {errorMessage ? 
+      <p className="main-error"> {errorMessage} </p> : 
+      <p className="main-error inactive"> {errorMessage} </p>}  
         {app}
       <BuildList 
         updateBuildName={updateBuildName}

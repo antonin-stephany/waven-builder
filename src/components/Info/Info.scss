@@ -61,8 +61,11 @@
             border: 1px solid v.$color-input;
             background-color: v.$color-background;
             color: v.$color-background-title;
+            transition: 0.1s;
             &:hover{
                 background-color: #eeeeee;
+                transform: scale(1.04);
+                transition: 0.1s;
             }
             &:active{
                 border: 1px solid v.$color-background-title;
@@ -72,8 +75,11 @@
             border: 1px solid v.$color-background-title;
             background-color: v.$color-background-title;
             color: v.$color-background;
+            transition: 0.1s;
             &:hover{
                 background-color: #1d284b;
+                transform: scale(1.04);
+                transition: 0.1s;
             }
             &:active{
                 outline: 1px solid v.$color-background-title;

@@ -10,6 +10,8 @@
     color:v.$color-title;
     background-color: v.$color-background-title;
     padding: v.$gutter;
+    position: sticky;
+    z-index: 1;
   }
 
   &-container{
@@ -34,5 +36,10 @@
     padding: v.$gutter;
     position: absolute;
     width: 100%;
+    transition: ease-out 0.2s;
+    &.inactive{
+      transform: translateY(-32px);
+      transition: ease-out 0.2s;
+    }
   }
 }

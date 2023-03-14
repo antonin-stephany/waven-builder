@@ -39,8 +39,8 @@ function SingleItem({ value, description, rare, stats, gifts, index, errorMessag
         <p>{description}</p>
         <div className="item-content-container-carac">
           <div className="item-content-container-carac-tabs">
-            <h4 className={tab === 1 ? 'tab active-tab' : 'tab'} onClick={(event) => toggleTab(event, 1)}>Statistiques</h4>
-            <h4 className={tab === 2 ? 'tab active-tab' : 'tab'} onClick={(event) => toggleTab(event, 2)}>Dons</h4>
+            <h4 className={tab === 1 ? 'active-tab' : 'tab'} onClick={(event) => toggleTab(event, 1)}>Statistiques</h4>
+            <h4 className={tab === 2 ? 'active-tab' : 'tab'} onClick={(event) => toggleTab(event, 2)}>Dons</h4>
           </div>
           <div className={tab === 1 ? 'content active-content' : 'content'}>
             {stats.map((stat) => (
