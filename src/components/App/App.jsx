@@ -103,6 +103,8 @@ function App() {
       {modal && <Modal 
       handleModal={handleModal} 
       updateBuildName={updateBuildName}
+      buildName={buildName}
+      errorMessage={handleErrorMessage}
       />}
       <div className="main">
         <h1 className="main-title">Waven builder</h1>
