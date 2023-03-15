@@ -32,7 +32,6 @@
   &-error{
     text-align: center;
     color: v.$color-title;
-    background-color: v.$color-error;
     padding: v.$gutter;
     position: absolute;
     width: 100%;
@@ -40,6 +39,12 @@
     &.inactive{
       transform: translateY(-32px);
       transition: ease-out 0.2s;
+    }
+    &.green{
+      background-color: green;
+    }
+    &.red{
+      background-color: v.$color-error;
     }
   }
 }

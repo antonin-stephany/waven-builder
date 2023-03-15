@@ -10,7 +10,7 @@ function SingleItem({ value, description, rare, stats, gifts, index, errorMessag
   function addItem() {
     const testSameItem = stuff[type].find((item) => item.value === value);
     if (testSameItem !== undefined) {
-      errorMessage("Vous avez déjà choisi cet équipement");
+      errorMessage("Vous avez déjà choisi cet équipement", "red");
       return;
     }
     //trouver un emplacememt de libre pour l'anneau

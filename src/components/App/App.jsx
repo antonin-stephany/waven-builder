@@ -3,11 +3,14 @@ import StuffSlot from "../StuffSlot/StuffSlot";
 import Info from "../Info/Info";
 import SpellSlot from "../SpellSlot/SpellSlot";
 import BuildList from "../BuildList/BuildList";
+import Modal from "../Modal/Modal";
 import "./App.scss";
 import ElementArea from "../ElementArea/ElementArea";
 
 function App() {
+  const [modal, setModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessageColor, setErrorMessageColor] = useState("red");
   const [buildName, setBuildName] = useState("");
   const [indexHero, setindexHero] = useState(0);
   const [slotIndex, setSlotIndex] = useState(0);
@@ -30,15 +33,21 @@ function App() {
     setElementType(undefined);
   }
 
-  function handleErrorMessage(message) {
+  function handleErrorMessage(message, color) {
+    setErrorMessageColor(color);
     setErrorMessage(message);
     const timeId = setTimeout(() => {
       setErrorMessage("");
+      setErrorMessageColor("red");
     }, 3000);
 
     return () => {
       clearTimeout(timeId);
     };
+  }
+
+  function handleModal(boolean){
+    setModal(boolean);
   }
 
   let app;
@@ -81,6 +90,7 @@ function App() {
             indexHero={indexHero}
             updateIndexHero={updateIndexHero}
             errorMessage={handleErrorMessage}
+            handleModal={handleModal}
           />
           <SpellSlot openLeftPart={openElementArea} />
         </div>
@@ -89,17 +99,23 @@ function App() {
   }
 
   return (
-    <div className="main">
-      <h1 className="main-title">Waven builder</h1>
-      {errorMessage ? 
-      <p className="main-error"> {errorMessage} </p> : 
-      <p className="main-error inactive"> {errorMessage} </p>}  
-        {app}
-      <BuildList 
-        updateBuildName={updateBuildName}
-        updateIndexHero={updateIndexHero}
-      />
-    </div>
+    <>
+      {modal && <Modal 
+      handleModal={handleModal} 
+      updateBuildName={updateBuildName}
+      />}
+      <div className="main">
+        <h1 className="main-title">Waven builder</h1>
+        {errorMessage ? 
+        <p className={`main-error ${errorMessageColor}`}> {errorMessage} </p> : 
+        <p className="main-error inactive"> {errorMessage} </p>}  
+          {app}
+        <BuildList 
+          updateBuildName={updateBuildName}
+          updateIndexHero={updateIndexHero}
+        />
+      </div>
+    </>
   );
 }
 
