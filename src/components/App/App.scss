@@ -48,3 +48,19 @@
     }
   }
 }
+
+// Responsive
+@media (max-width: 1155px) {
+  .main-container{
+    max-height: 100%;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  .info{
+    order: -1;
+    width: 100%;
+  }
+  .action-buttons {
+    justify-content: space-around;
+  }
+}
