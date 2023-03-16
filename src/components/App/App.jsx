@@ -4,6 +4,7 @@ import Info from "../Info/Info";
 import SpellSlot from "../SpellSlot/SpellSlot";
 import BuildList from "../BuildList/BuildList";
 import Modal from "../Modal/Modal";
+import Responsive from "../Responsive/Responsive";
 import "./App.scss";
 import ElementArea from "../ElementArea/ElementArea";
 
@@ -107,6 +108,7 @@ function App() {
 
   return (
     <>
+      <Responsive />
       {modal && <Modal 
         modalType={modalType}
         handleModal={handleModal} 
