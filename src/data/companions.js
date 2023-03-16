@@ -14,7 +14,7 @@ export default [
                 description:'Attaque',    
             },
             {
-                value: 5,
+                value: "5%",
                 description:'Coups Critiques',    
             },
             {
@@ -49,7 +49,7 @@ export default [
                 description:'Attaque',    
             },
             {
-                value: 5,
+                value: "5%",
                 description:'Coups Critiques',    
             },
             {
@@ -85,7 +85,7 @@ export default [
                 description:'Attaque',    
             },
             {
-                value: 5,
+                value: "5%",
                 description:'Coups Critiques',    
             },
             {
@@ -120,7 +120,7 @@ export default [
                 description:'Attaque',    
             },
             {
-                value: 5,
+                value: "5%",
                 description:'Coups Critiques',    
             },
             {
@@ -155,7 +155,7 @@ export default [
                 description:'Attaque',    
             },
             {
-                value: 5,
+                value: "5%",
                 description:'Coups Critiques',    
             },
             {
@@ -191,7 +191,7 @@ export default [
                 description:'Attaque',    
             },
             {
-                value: 5,
+                value: "5%",
                 description:'Coups Critiques',    
             },
             {
@@ -226,7 +226,7 @@ export default [
                 description:'Attaque',    
             },
             {
-                value: 5,
+                value: "5%",
                 description:'Coups Critiques',    
             },
             {

@@ -45,7 +45,10 @@ function SingleItem({ value, description, rare, stats, gifts, index, errorMessag
           <div className={tab === 1 ? 'content active-content' : 'content'}>
             {stats.map((stat) => (
               <div key={stat.description}>
-              {stat.value ? (
+              {stat.value ? (type ==="companion" ?
+                <p>
+                  -{stat.value} {stat.description}
+                </p> :
                 <p>
                   -{stat.value}% {stat.description}
                 </p>
@@ -86,7 +89,9 @@ SingleItem.propTypes = {
   rare: PropTypes.string.isRequired,
   stats: PropTypes.arrayOf(
     PropTypes.shape({
-      value: PropTypes.number.isRequired,
+      value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number]).isRequired,
       description: PropTypes.string.isRequired,
     })
   ).isRequired,
