@@ -4,7 +4,7 @@ import SingleBuild from "../SingleBuild/SingleBuild";
 import "./BuildList.scss";
 import { useSelector } from 'react-redux';
 
-function BuildList({updateBuildName, updateIndexHero, updateBuildIndex, handleModal}) {
+function BuildList({updateBuildName, buildName, updateIndexHero, handleModal}) {
   const savedBuilds = useSelector((fullState) => fullState.allBuilds.savedBuilds);
   return (
     <div className="build-list-container">
@@ -13,8 +13,8 @@ function BuildList({updateBuildName, updateIndexHero, updateBuildIndex, handleMo
         key={build.id}
         index={i}
         updateBuildName={updateBuildName}
+        buildName={buildName}
         updateIndexHero={updateIndexHero}
-        updateBuildIndex={updateBuildIndex}
         handleModal={handleModal}
         character={build.character}
         stuff={build.stuff}
@@ -26,8 +26,8 @@ function BuildList({updateBuildName, updateIndexHero, updateBuildIndex, handleMo
 }
 BuildList.propTypes = {
   updateBuildName: PropTypes.func.isRequired,
+  buildName: PropTypes.string.isRequired,
   updateIndexHero: PropTypes.func.isRequired,
-  updateBuildIndex: PropTypes.func.isRequired,
   handleModal: PropTypes.func.isRequired,
 };
 

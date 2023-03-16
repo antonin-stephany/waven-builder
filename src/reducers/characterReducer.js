@@ -1,4 +1,4 @@
-import { SET_CLASS, SET_LEVEL, SET_HERO } from '../actions/characterActions';
+import { SET_CLASS, SET_LEVEL, SET_HERO} from '../actions/characterActions';
 import classes from '../data/classes';
 
 export const initialStateCharacter = {

@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionDeleteBuild, actionSetBuild } from "../../actions/buildActions";
 import { compareCurrentAndSavedbuild } from '../../tools/compareArray';
 
-function SingleBuild({character, stuff, spells, index, updateBuildName, updateIndexHero, updateBuildIndex, handleModal}) {
+function SingleBuild({character, stuff, spells, index, updateBuildName, buildName,  updateIndexHero, handleModal}) {
   const itemTypes = ["ring","cuff","companion","spells"];
   const titleBuildSelected = useSelector((fullState) => fullState.allBuilds.savedBuilds[index].character.title) ?? '';
   const classesBuildSelected = useSelector((fullState) => fullState.allBuilds.savedBuilds[index].character.classes) ?? '';
@@ -25,14 +25,13 @@ function SingleBuild({character, stuff, spells, index, updateBuildName, updateIn
   }
   function setBuild(index){
     let buildAlreadySaved = savedBuilds.find((build) => build.id === currentIdBuild);
-    if(compareCurrentAndSavedbuild(currentIdBuild, currentCharacter, currentSpells, currentStuff, buildAlreadySaved)){
-      updateBuildIndex(index);
+    if(compareCurrentAndSavedbuild(currentIdBuild, currentCharacter, currentSpells, currentStuff, buildAlreadySaved, buildName)){
       updateBuildName(titleBuildSelected);
       const newIndex = dataCharacter.findIndex(element => element.value === classesBuildSelected);
       updateIndexHero(newIndex);
       dispatch(actionSetBuild(index));
     }else{
-        handleModal(true, "set-build");
+        handleModal(true, "set-build", titleBuildSelected, classesBuildSelected, index);
     }
     
   }
@@ -67,7 +66,7 @@ function SingleBuild({character, stuff, spells, index, updateBuildName, updateIn
 }
 SingleBuild.propTypes = {
     updateBuildName: PropTypes.func.isRequired,
-    updateBuildIndex: PropTypes.func.isRequired,
+    buildName: PropTypes.string.isRequired,
     updateIndexHero: PropTypes.func.isRequired,
     index : PropTypes.number.isRequired,
     character: PropTypes.shape({

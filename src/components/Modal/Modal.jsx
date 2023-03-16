@@ -7,16 +7,14 @@ import { actionSetBuild } from "../../actions/buildActions";
 import dataCharacter from '../../data/classes';
 import uniqid from 'uniqid';
 
-function Modal({buildName, handleModal, modalType, updateBuildName, errorMessage, updateIndexHero, updateBuildIndex, index}) {
+function Modal({buildName, handleModal, modalType, updateBuildName, errorMessage, updateIndexHero, index, titleBuildSelected, classBuildSelected}) {
     const idBuild = useSelector((fullState) => fullState.allBuilds.id);
     const savedBuilds = useSelector((fullState) => fullState.allBuilds.savedBuilds);
-    const titleBuildSelected = useSelector((fullState) => fullState.allBuilds.savedBuilds[index].character.title) ?? '';
-    const classesBuildSelected = useSelector((fullState) => fullState.allBuilds.savedBuilds[index].character.classes) ?? '';
     const dispatch = useDispatch();
     function handleNewBuild(){
         dispatch(actionNewBuild())
         updateBuildName('')
-        handleModal(false)
+        handleModal(false, "", "", "", null)
     }
     function handleSaveBuild(){
         errorMessage("Build sauvegardé !", "green")
@@ -26,12 +24,11 @@ function Modal({buildName, handleModal, modalType, updateBuildName, errorMessage
             dispatch(actionSaveBuild(buildName, uniqid()));
             
         }   
-        handleModal(false)   
+        handleNewBuild();
     }
     function setBuild(index){
-        updateBuildIndex(index);
         updateBuildName(titleBuildSelected);
-        const newIndex = dataCharacter.findIndex(element => element.value === classesBuildSelected);
+        const newIndex = dataCharacter.findIndex(element => element.value === classBuildSelected);
         updateIndexHero(newIndex);
         dispatch(actionSetBuild(index));
         
@@ -57,13 +54,13 @@ function Modal({buildName, handleModal, modalType, updateBuildName, errorMessage
                 </>
             ):(
                 <>
-                    <button onClick={handleNewAndSetBuild(index)}className="build-new">Non ça ira</button>
+                    <button onClick={() => handleNewAndSetBuild(index)}className="build-new">Non ça ira</button>
                     <button onClick={() => handleSaveAndSetBuid(index)} className="build-save">Sauvegarder le build</button>
                 </>
             )}
                 
             </div>
-            <button onClick={() => handleModal(false, "")} className="cross-close-modal"></button>
+            <button onClick={() =>handleModal(false, "", "", "", null)} className="cross-close-modal"></button>
         </div>
 
    </div>
@@ -71,11 +68,12 @@ function Modal({buildName, handleModal, modalType, updateBuildName, errorMessage
 }
 Modal.propTypes = {
     buildName: PropTypes.string.isRequired,
-    index: PropTypes.number.isRequired,
+    titleBuildSelected: PropTypes.string,
+    classBuildSelected: PropTypes.string,
+    index: PropTypes.number,
     handleModal: PropTypes.func.isRequired,
     modalType: PropTypes.string.isRequired,
     updateBuildName: PropTypes.func.isRequired,
-    updateBuildIndex: PropTypes.func.isRequired,
     errorMessage: PropTypes.func.isRequired,
     updateIndexHero: PropTypes.func.isRequired,
 };

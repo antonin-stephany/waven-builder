@@ -13,16 +13,15 @@ function App() {
   const [errorMessage, setErrorMessage] = useState("");
   const [errorMessageColor, setErrorMessageColor] = useState("red");
   const [buildName, setBuildName] = useState("");
-  const [buildIndex, setBuildIndex] = useState(0);
+  const [indexBuildSelected, setIndexBuildSelected] = useState(null);
+  const [titleBuildSelected, setTitleBuildSelected] = useState("");
+  const [classBuildSelected, setClassBuildSelected] = useState("");
   const [indexHero, setindexHero] = useState(0);
   const [slotIndex, setSlotIndex] = useState(0);
   const [elementType, setElementType] = useState(undefined);
 
   function updateBuildName(title) {
     setBuildName(title);
-  }
-  function updateBuildIndex(index){
-    setBuildIndex(index);
   }
   function updateIndexHero(newIndex) {
     setindexHero(newIndex);
@@ -50,9 +49,12 @@ function App() {
     };
   }
 
-  function handleModal(boolean, type){
+  function handleModal(boolean, type, titleBuildSelected, classBuildSelected, indexBuildSelected){
     setModal(boolean);
     setModalType(type);
+    setTitleBuildSelected(titleBuildSelected);
+    setClassBuildSelected(classBuildSelected);
+    setIndexBuildSelected(indexBuildSelected)
   }
 
   let app;
@@ -106,14 +108,15 @@ function App() {
   return (
     <>
       {modal && <Modal 
-      modalType={modalType}
-      handleModal={handleModal} 
-      updateBuildName={updateBuildName}
-      updateBuildIndex={updateBuildIndex}
-      buildName={buildName}
-      index={buildIndex}
-      errorMessage={handleErrorMessage}
-      updateIndexHero={updateIndexHero}
+        modalType={modalType}
+        handleModal={handleModal} 
+        updateBuildName={updateBuildName}
+        buildName={buildName}
+        titleBuildSelected={titleBuildSelected}
+        classBuildSelected={classBuildSelected}
+        index={indexBuildSelected}
+        errorMessage={handleErrorMessage}
+        updateIndexHero={updateIndexHero}
       />}
       <div className="main">
         <h1 className="main-title">Waven builder</h1>
@@ -124,8 +127,8 @@ function App() {
         <BuildList 
           handleModal={handleModal}
           updateBuildName={updateBuildName}
+          buildName={buildName}
           updateIndexHero={updateIndexHero}
-          updateBuildIndex={updateBuildIndex}
         />
       </div>
     </>

@@ -4,7 +4,7 @@ import './Info.scss';
 import DropDown from '../DropDown/DropDown';
 import dataCharacter from '../../data/classes';
 import { useDispatch, useSelector } from 'react-redux';
-import { actionSetLevel, actionSetClass, actionSetHero } from '../../actions/characterActions'
+import { actionSetLevel, actionSetClass, actionSetHero} from '../../actions/characterActions'
 import { actionDeleteAll } from '../../actions/spellActions'
 import { actionSaveBuild, actionSaveAgainBuild, actionNewBuild } from '../../actions/buildActions';
 import uniqid from 'uniqid';
@@ -64,11 +64,11 @@ function Info({buildName, updateBuildName, indexHero, updateIndexHero, errorMess
             return; 
         }
         let buildAlreadySaved = savedBuilds.find((build) => build.id === idBuild);
-        if(compareCurrentAndSavedbuild(idBuild, character, spells, stuff, buildAlreadySaved)){
+        if(compareCurrentAndSavedbuild(idBuild, character, spells, stuff, buildAlreadySaved, buildName)){
             dispatch(actionNewBuild())
             updateBuildName('')
         }else{
-            handleModal(true, "new-build");
+            handleModal(true, "new-build", "", "", null);
         }
 
     }
