@@ -9,9 +9,11 @@ import ElementArea from "../ElementArea/ElementArea";
 
 function App() {
   const [modal, setModal] = useState(false);
+  const [modalType, setModalType] = useState("")
   const [errorMessage, setErrorMessage] = useState("");
   const [errorMessageColor, setErrorMessageColor] = useState("red");
   const [buildName, setBuildName] = useState("");
+  const [buildIndex, setBuildIndex] = useState(0);
   const [indexHero, setindexHero] = useState(0);
   const [slotIndex, setSlotIndex] = useState(0);
   const [elementType, setElementType] = useState(undefined);
@@ -19,7 +21,9 @@ function App() {
   function updateBuildName(title) {
     setBuildName(title);
   }
-  
+  function updateBuildIndex(index){
+    setBuildIndex(index);
+  }
   function updateIndexHero(newIndex) {
     setindexHero(newIndex);
   }
@@ -46,8 +50,9 @@ function App() {
     };
   }
 
-  function handleModal(boolean){
+  function handleModal(boolean, type){
     setModal(boolean);
+    setModalType(type);
   }
 
   let app;
@@ -101,10 +106,14 @@ function App() {
   return (
     <>
       {modal && <Modal 
+      modalType={modalType}
       handleModal={handleModal} 
       updateBuildName={updateBuildName}
+      updateBuildIndex={updateBuildIndex}
       buildName={buildName}
+      index={buildIndex}
       errorMessage={handleErrorMessage}
+      updateIndexHero={updateIndexHero}
       />}
       <div className="main">
         <h1 className="main-title">Waven builder</h1>
@@ -113,8 +122,10 @@ function App() {
         <p className="main-error inactive"> {errorMessage} </p>}  
           {app}
         <BuildList 
+          handleModal={handleModal}
           updateBuildName={updateBuildName}
           updateIndexHero={updateIndexHero}
+          updateBuildIndex={updateBuildIndex}
         />
       </div>
     </>

@@ -68,7 +68,7 @@ function Info({buildName, updateBuildName, indexHero, updateIndexHero, errorMess
             dispatch(actionNewBuild())
             updateBuildName('')
         }else{
-            handleModal(true);
+            handleModal(true, "new-build");
         }
 
     }
