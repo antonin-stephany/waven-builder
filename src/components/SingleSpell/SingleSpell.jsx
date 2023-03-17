@@ -48,7 +48,7 @@ function SingleSpell({ value, label, classes, description, gifts, cost, load, gi
           <h3 onClick={openGift}>Dons<i className={giftactive ? 'arrow active' : 'arrow'}></i></h3>
           <div className={giftactive ? 'spell-content_gifts active' : 'spell-content_gifts'}>
             {gifts.map((gift) => (
-              <p key={gift.description}>{gift.description}</p>
+              <p key={gift.description}>• {gift.description}</p>
             ))}
           </div>
         </div>

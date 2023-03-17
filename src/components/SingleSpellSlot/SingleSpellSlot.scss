@@ -6,7 +6,7 @@
     cursor: pointer;
     width: 70px;
     height: 70px;
-    margin:v.$gutter/2;
+    margin: calc(v.$gutter / 2);
     transition: 0.1s;
     &:hover{
         transition: 0.1s;

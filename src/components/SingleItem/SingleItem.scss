@@ -31,7 +31,7 @@
         min-height: 140px;
         width: 100%;
         &>p{
-            padding-bottom: v.$gutter/2;
+            padding-bottom: calc(v.$gutter / 2);
         }
         &-title{
             display: flex;
@@ -98,7 +98,7 @@
             }
             & .content{
                 display: none;
-                padding-top: v.$gutter/2;
+                padding-top: calc(v.$gutter / 2);
                 min-height: 100px;
                 & div p{
                     line-height: 1.2em;
