@@ -61,7 +61,7 @@
         }
         &_description{
             padding-bottom: calc(v.$gutter / 2);
-            height: 80px;
+            height: 65px;
             opacity: 0;
             transition: 0.2s ease-out;
             &.active{
@@ -72,7 +72,7 @@
         &_gift-block{
             transition: 0.3s ease-out;
             &.active{
-                transform: translateY(-80px);
+                transform: translateY(-65px);
                 transition: 0.3s ease-out;
                 height: 22px; // h3 + gutter size 
             }

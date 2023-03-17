@@ -111,3 +111,20 @@
     }
 
 }
+.companion-img{
+    position:relative;
+    &-cost{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        left: 20px;
+        top: 20px;
+        & img{
+            position: absolute;
+            &:first-of-type{
+                width: 35px;
+            }
+        }
+    }
+}

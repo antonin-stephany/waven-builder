@@ -4,7 +4,7 @@ import "./SingleItem.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { actionSetItem } from "../../actions/stuffActions";
 
-function SingleItem({ value, description, rare, stats, gifts, index, errorMessage, type, label}) {
+function SingleItem({ value, description, rare, stats, gifts, index, errorMessage, type, label, element, cost}) {
   const stuff = useSelector((fullState) => fullState.allBuilds.stuff);
   const dispatch = useDispatch();
   function addItem() {
@@ -30,7 +30,17 @@ function SingleItem({ value, description, rare, stats, gifts, index, errorMessag
   }
   return (
     <div className="item" onClick={addItem}>
+    {type ==="companion" ? (
+      <div className="companion-img">
+        <img src={`./assets/${type}/${value}.png`} /> 
+        <div className="companion-img-cost">
+          <img src={`./assets/companion/assets/${element}.png`} />
+          <img src={`./assets/companion/assets/${cost}.png`} />
+        </div>
+      </div>            
+      ) : (
       <img src={`./assets/${type}/${value}.png`} />
+    )}
       <div className="item-content">
         <div className="item-content-title">
           <h2>{label}</h2>
@@ -87,6 +97,8 @@ SingleItem.propTypes = {
   type: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   rare: PropTypes.string.isRequired,
+  element: PropTypes.string,
+  cost: PropTypes.number,
   stats: PropTypes.arrayOf(
     PropTypes.shape({
       value: PropTypes.oneOfType([

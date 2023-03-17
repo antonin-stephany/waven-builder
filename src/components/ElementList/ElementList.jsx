@@ -49,6 +49,8 @@ function ElementList({ index, errorMessage, type }) {
               label={item.label}
               description={item.description}
               rare={item.rare}
+              element={item.element}
+              cost={item.cost}
               stats={item.stats}
               gifts={item.gifts}
               index={index}
