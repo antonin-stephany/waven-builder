@@ -1,11 +1,11 @@
 @use 'src/styles/vars' as v;
 
 // Responsive
-.background-responsive{
-    display: none;
+.background-responsive {
+  display: none;
 }
 @media (max-width: 1155px) {
-    /*.main-container{
+  /*.main-container{
       max-height: 100%;
       justify-content: space-around;
       flex-wrap: wrap;
@@ -17,32 +17,32 @@
     .action-buttons {
       justify-content: space-around;
     }*/
-    .background-responsive{
-      background: v.$color-background-title;
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: 999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+  .background-responsive {
+    background: v.$color-background-title;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .responsive-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 425px;
+    & h3 {
+      font-size: v.$font-title-build;
+      padding: v.$gutter;
+      color: #ffffff;
     }
-    .responsive-container{
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 425px;
-        & h3{
-           font-size: v.$font-title-build;
-           padding: v.$gutter;
-           color: #ffffff;
-        }
-        & p{
-            font-size: v.$font-text;
-            padding: v.$gutter;
-            padding-bottom: v.$gutter*2;
-            color: #ffffff;
-        }
+    & p {
+      font-size: v.$font-text;
+      padding: v.$gutter;
+      padding-bottom: v.$gutter * 2;
+      color: #ffffff;
     }
   }
+}

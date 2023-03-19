@@ -1,14 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
-import SlotItem from "../SlotItem/SlotItem";
-import "./StuffSlot.scss";
+import React from 'react';
+import PropTypes from 'prop-types';
+import SlotItem from '../SlotItem/SlotItem';
+import './StuffSlot.scss';
 
-function Stuff({ openRightPart}) {
+function Stuff({ openRightPart }) {
   return (
     <div className="stuff">
-      <SlotItem openModal={openRightPart} type={"ring"}/>
-      <SlotItem openModal={openRightPart} type={"cuff"}/>
-      <SlotItem openModal={openRightPart} type={"companion"}/>
+      <SlotItem openModal={openRightPart} type={'ring'} />
+      <SlotItem openModal={openRightPart} type={'cuff'} />
+      <SlotItem openModal={openRightPart} type={'companion'} />
     </div>
   );
 }

@@ -1,16 +1,17 @@
 @use 'src/styles/vars' as v;
 
-.build-stuff-item, .build-stuff-spell{
-    display: flex;
-    margin: v.$gutter;
-    &-container{
-        width: 30px;
-        height: 30px;
-        margin: 0 2px;
-        background-color: v.$color-slot;
-        position: relative;
-        & img{
-            height: 30px;
-        }
+.build-stuff-item,
+.build-stuff-spell {
+  display: flex;
+  margin: v.$gutter;
+  &-container {
+    width: 30px;
+    height: 30px;
+    margin: 0 2px;
+    background-color: v.$color-slot;
+    position: relative;
+    & img {
+      height: 30px;
     }
+  }
 }

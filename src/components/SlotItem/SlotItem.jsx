@@ -1,15 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
-import "./SlotItem.scss";
-import { useSelector, useDispatch } from "react-redux";
-import { actionDeleteItem } from "../../actions/stuffActions";
+import React from 'react';
+import PropTypes from 'prop-types';
+import './SlotItem.scss';
+import { useSelector, useDispatch } from 'react-redux';
+import { actionDeleteItem } from '../../actions/stuffActions';
 
 function SlotItem({ openModal, type }) {
   const dispatch = useDispatch();
   const stuff = useSelector((fullState) => fullState.allBuilds.stuff);
   function deleteItem(event, index, type) {
     event.stopPropagation();
-    dispatch(actionDeleteItem({index, type}));
+    dispatch(actionDeleteItem({ index, type }));
   }
   return (
     <div className={`stuff-${type}`}>

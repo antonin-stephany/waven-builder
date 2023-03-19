@@ -4,48 +4,47 @@
   background-color: v.$color-app-container;
   font-size: v.$font-text;
 
-  &-title{
+  &-title {
     text-align: center;
     font-size: v.$font-title;
-    color:v.$color-title;
+    color: v.$color-title;
     background-color: v.$color-background-title;
     padding: v.$gutter;
     position: sticky;
     z-index: 1;
   }
 
-  &-container{
+  &-container {
     width: 90vw;
-    max-height: calc(440px + 2*v.$gutter);
+    max-height: calc(440px + 2 * v.$gutter);
     border-radius: v.$round;
-    margin: v.$gutter*2 auto;
-    margin-top: v.$gutter*4;
+    margin: v.$gutter * 2 auto;
+    margin-top: v.$gutter * 4;
     background-color: v.$color-background;
     padding: v.$gutter;
     display: flex;
     justify-content: space-between;
-    &.active{
+    &.active {
       align-items: center;
     }
   }
 
-  &-error{
+  &-error {
     text-align: center;
     color: v.$color-title;
     padding: v.$gutter;
     position: absolute;
     width: 100%;
     transition: ease-out 0.2s;
-    &.inactive{
+    &.inactive {
       transform: translateY(-32px);
       transition: ease-out 0.2s;
     }
-    &.green{
+    &.green {
       background-color: green;
     }
-    &.red{
+    &.red {
       background-color: v.$color-error;
     }
   }
 }
-

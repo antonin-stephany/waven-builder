@@ -4,6 +4,6 @@ import buildsReducer from '../reducers/buildsReducer';
 const store = configureStore({
   reducer: {
     allBuilds: buildsReducer,
-  }
+  },
 });
 export default store;

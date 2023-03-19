@@ -1,10 +1,10 @@
-@use "src/styles/vars" as v;
+@use 'src/styles/vars' as v;
 
-.spells-slot{
-    display: flex;
-    flex-wrap: wrap;
-    width: 258px;
-    margin: calc(v.$gutter / 2);
-    border-radius: v.$round;
-    align-self: center;
+.spells-slot {
+  display: flex;
+  flex-wrap: wrap;
+  width: 258px;
+  margin: calc(v.$gutter / 2);
+  border-radius: v.$round;
+  align-self: center;
 }

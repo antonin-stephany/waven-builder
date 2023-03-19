@@ -1,6 +1,6 @@
-@use "src/styles/vars" as v;
+@use 'src/styles/vars' as v;
 
-.cross-close{
+.cross-close {
   border: 0;
   border-radius: calc(v.$round / 2);
   font-size: v.$font-title;
@@ -11,16 +11,16 @@
   z-index: 1;
   &:after {
     display: inline-block;
-    content: "\00d7"; /* This will render the 'X' */
+    content: '\00d7'; /* This will render the 'X' */
   }
   &:hover {
     cursor: pointer;
   }
-  &-items{
+  &-items {
     right: calc(5vw - 1rem);
     margin-top: -30px;
   }
-  &-spell{
+  &-spell {
     right: calc(5vw + 300px);
     margin-top: -30px;
   }

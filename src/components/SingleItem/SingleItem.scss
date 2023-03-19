@@ -1,130 +1,130 @@
 @use 'src/styles/vars' as v;
 
 @mixin menu-line {
-    content: '';
-    display: block;
-    margin-top: 5px;
-    height: 2px;
-    background-color: v.$color-tabs-active;
-    transition-property: left, right, width;
-    transition-duration: 0.2s;
-    transition-timing-function: ease-out;
-    position: absolute;
+  content: '';
+  display: block;
+  margin-top: 5px;
+  height: 2px;
+  background-color: v.$color-tabs-active;
+  transition-property: left, right, width;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-out;
+  position: absolute;
 }
 
-.item{
-    width: 50%;
+.item {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  padding: v.$gutter;
+  border: 2px solid v.$color-line;
+  min-height: 200px;
+  &:hover {
+    cursor: pointer;
+    background-color: v.$color-slot;
+  }
+  &-content {
+    padding-left: v.$gutter;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 140px;
+    width: 100%;
+    & > p {
+      padding-bottom: calc(v.$gutter / 2);
+    }
+    &-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: v.$gutter;
+      & h2 {
+        font-weight: bold;
+        font-size: v.$font-title-item;
+      }
+      & span {
+        background-color: v.$color-background-title;
+        padding: 3px;
+        border-radius: v.$round;
+        color: v.$color-slot;
+        margin: 0 v.$gutter;
+      }
+    }
+    &-container-carac {
+      position: relative;
+      &-tabs {
+        display: flex;
+        & .tab,
+        .active-tab {
+          padding: 5px;
+          position: relative;
+          border-bottom: 1px solid v.$color-tabs;
+        }
+        & h4:first-of-type {
+          &.active-tab {
+            &::after {
+              @include menu-line;
+              left: 0%;
+              right: 100%;
+              width: 100%;
+            }
+          }
+          &.tab {
+            &::after {
+              @include menu-line;
+              left: 100%;
+              right: 100%;
+              width: 0%;
+            }
+          }
+        }
+        & h4:last-of-type {
+          &.active-tab {
+            &::after {
+              @include menu-line;
+              left: 0%;
+              right: 100%;
+              width: 100%;
+            }
+          }
+          &.tab {
+            &::after {
+              @include menu-line;
+              left: 0%;
+              right: 0%;
+              width: 0%;
+            }
+          }
+        }
+      }
+      & .content {
+        display: none;
+        padding-top: calc(v.$gutter / 2);
+        min-height: 100px;
+        & div p {
+          line-height: 1.2em;
+        }
+      }
+      & .active-content {
+        display: block;
+      }
+    }
+  }
+}
+.companion-img {
+  position: relative;
+  &-cost {
     display: flex;
     align-items: center;
-    padding: v.$gutter;
-    border: 2px solid v.$color-line;
-    min-height: 200px;
-    &:hover{
-        cursor: pointer;
-        background-color: v.$color-slot;
+    justify-content: center;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    & img {
+      position: absolute;
+      &:first-of-type {
+        width: 35px;
+      }
     }
-    &-content{
-        padding-left: v.$gutter;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        min-height: 140px;
-        width: 100%;
-        &>p{
-            padding-bottom: calc(v.$gutter / 2);
-        }
-        &-title{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-bottom: v.$gutter;
-            & h2{
-                font-weight: bold;
-                font-size: v.$font-title-item;
-            }
-            & span{
-                background-color: v.$color-background-title;
-                padding: 3px;
-                border-radius: v.$round;
-                color: v.$color-slot;
-                margin: 0 v.$gutter;
-            }
-        }
-        &-container-carac{
-            position: relative;
-            &-tabs{
-                display: flex;
-                & .tab, .active-tab{
-                    padding: 5px;
-                    position: relative;
-                    border-bottom: 1px solid v.$color-tabs;
-                }
-                & h4:first-of-type{
-                    &.active-tab{
-                        &::after {
-                            @include menu-line;
-                            left: 0%;
-                            right: 100%;
-                            width: 100%;
-                          }
-                    }
-                    &.tab{
-                        &::after {
-                            @include menu-line;
-                            left: 100%;
-                            right: 100%;
-                            width: 0%;
-                          }
-                    }
-                }
-                & h4:last-of-type{
-                    &.active-tab{
-                        &::after {
-                            @include menu-line;
-                            left: 0%;
-                            right: 100%;
-                            width: 100%;
-                          }
-                    }
-                    &.tab{
-                        &::after {
-                            @include menu-line;
-                            left: 0%;
-                            right: 0%;
-                            width: 0%;
-                          }
-                    }
-                }
-            }
-            & .content{
-                display: none;
-                padding-top: calc(v.$gutter / 2);
-                min-height: 100px;
-                & div p{
-                    line-height: 1.2em;
-                }
-            }
-            & .active-content{
-                display: block;
-            }
-        }
-    }
-
-}
-.companion-img{
-    position:relative;
-    &-cost{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        left: 20px;
-        top: 20px;
-        & img{
-            position: absolute;
-            &:first-of-type{
-                width: 35px;
-            }
-        }
-    }
+  }
 }

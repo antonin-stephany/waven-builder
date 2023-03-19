@@ -1,4 +1,4 @@
-@use "sass:color";
+@use 'sass:color';
 
 $color-background: #fafafa;
 $color-app-container: #ffffff;
@@ -10,14 +10,14 @@ $color-cross: red;
 $color-error: red;
 $color-tabs: rgb(221, 221, 221);
 $color-tabs-active: #17203a;
-$color-input:#cecece;
+$color-input: #cecece;
 
 $font-title: 2em;
 $font-text: 0.9em;
-$font-input:1em;
+$font-input: 1em;
 $font-title-item: 1.3em;
 $font-title-build: 1.4em;
 
-$round:0.2em;
+$round: 0.2em;
 
 $gutter: 1rem;
