@@ -32,7 +32,7 @@ function Modal({buildName, handleModal, modalType, updateBuildName, errorMessage
         updateIndexHero(newIndex);
         dispatch(actionSetBuild(index));
         
-      }
+    }
     function handleSaveAndSetBuid(index){
         handleSaveBuild();
         setBuild(index);
