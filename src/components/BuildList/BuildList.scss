@@ -9,6 +9,19 @@
     flex-direction: column;
     justify-content: space-between;
     }
+    &-list img, &-container{
+        cursor: pointer;
+        pointer-events: auto;
+    }
+    &-list{
+        transition: 0.2s;
+        pointer-events: none;
+        &:hover{
+            transform: scale(1.01);
+            transition: 0.2s;
+        }
+    }
+
     &-container{
         background-color: v.$color-background;
         margin-top: v.$gutter*2.5;
@@ -16,5 +29,6 @@
         justify-content: space-between;
         align-items: center;
         padding-left: 170px;
+        border-radius: v.$round;
     }
   }

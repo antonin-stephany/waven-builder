@@ -41,6 +41,10 @@ const buildsReducer = reduceReducers(
       case SAVE_AGAIN_BUILD: {
         return {
           ...state,
+          character: {
+            ...state.character,
+            title: action.payload.title
+          },
           savedBuilds: state.savedBuilds.map((build) => build.id === action.payload.id ?  {
             id: state.id, 
             character:{

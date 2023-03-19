@@ -2,6 +2,7 @@
 
 .cross-close{
   border: 0;
+  border-radius: v.$round/2;
   font-size: v.$font-title;
   background-color: v.$color-cross;
   color: white;

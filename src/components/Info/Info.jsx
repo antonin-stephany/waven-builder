@@ -4,19 +4,21 @@ import './Info.scss';
 import DropDown from '../DropDown/DropDown';
 import dataCharacter from '../../data/classes';
 import { useDispatch, useSelector } from 'react-redux';
-import { actionSetLevel, actionSetClass, actionSetHero } from '../../actions/characterActions'
+import { actionSetLevel, actionSetClass, actionSetHero} from '../../actions/characterActions'
 import { actionDeleteAll } from '../../actions/spellActions'
 import { actionSaveBuild, actionSaveAgainBuild, actionNewBuild } from '../../actions/buildActions';
 import uniqid from 'uniqid';
+import { compareCurrentAndSavedbuild } from '../../tools/compareArray';
 
-
-function Info({buildName, updateBuildName, indexHero, updateIndexHero, errorMessage}) {
-
+function Info({buildName, updateBuildName, indexHero, updateIndexHero, errorMessage, handleModal}) {
     const level = useSelector((fullState) => fullState.allBuilds.character.level);
     const classes = useSelector((fullState) => fullState.allBuilds.character.classes);
     const hero = useSelector((fullState) => fullState.allBuilds.character.hero);
     const idBuild = useSelector((fullState) => fullState.allBuilds.id);
     const savedBuilds = useSelector((fullState) => fullState.allBuilds.savedBuilds);
+    const character = useSelector((fullState) => fullState.allBuilds.character);
+    const spells = useSelector((fullState) => fullState.allBuilds.spells);
+    const stuff = useSelector((fullState) => fullState.allBuilds.stuff);
 
    // const spells = useSelector((fullState) => fullState.spells.spells)
     const dispatch = useDispatch();
@@ -24,7 +26,7 @@ function Info({buildName, updateBuildName, indexHero, updateIndexHero, errorMess
         e.preventDefault();
 
         if (!buildName.trim()) {
-            errorMessage("Veuillez choisir un nom pour votre build")
+            errorMessage("Veuillez choisir un nom pour votre build", "red")
             return; 
         }
         /*const spellSet = spells.filter(spell => spell.value.length > 0);
@@ -32,7 +34,7 @@ function Info({buildName, updateBuildName, indexHero, updateIndexHero, errorMess
             errorMessage("Il vous faut au minimum 9 sorts")
             return;
         }*/
-
+        errorMessage("Build sauvegardé !", "green")
         if(savedBuilds.some(build => build.id === idBuild)){
             dispatch(actionSaveAgainBuild(buildName, idBuild));
         }else{
@@ -57,53 +59,70 @@ function Info({buildName, updateBuildName, indexHero, updateIndexHero, errorMess
         dispatch(actionDeleteAll())
     }
     function handleNewBuild(){
-        dispatch(actionNewBuild())
-        updateBuildName('')
+        if (!buildName.trim()) {
+            errorMessage("Veuillez tout d'abord choisir un nom pour votre build actuel", "red")
+            return; 
+        }
+        let buildAlreadySaved = savedBuilds.find((build) => build.id === idBuild);
+        if(compareCurrentAndSavedbuild(idBuild, character, spells, stuff, buildAlreadySaved, buildName)){
+            dispatch(actionNewBuild())
+            updateBuildName('')
+        }else{
+            handleModal(true, "new-build", "", "", null);
+        }
+
     }
 
     return (
             <section className="info" >
-                <input 
-                    type="text" 
-                    placeholder="Nom du build" 
-                    className="title"  
-                    value={buildName}
-                    onChange={(e) => updateBuildName(e.target.value)}
-                />
-                <div className="icon-class">
-
+                <div className="info-container">
+                    <div className="title-container">
+                        <input 
+                            type="text" 
+                            placeholder="Nom du build" 
+                            className="title"  
+                            value={buildName}
+                            onChange={(e) => updateBuildName(e.target.value)}
+                        />
+                    </div>
+                    <div className="others-infos-container">
+                        <DropDown 
+                            value={classes}
+                            onChange={handleOnchangeClass}
+                            options={dataCharacter} 
+                        />
+                        <DropDown 
+                            value={hero}
+                            onChange={handleOnchangeHero}
+                            options={dataCharacter[indexHero].heros} 
+                        />  
+                        <div className='level-container'>
+                            <input 
+                                type="number" 
+                                placeholder="Level" 
+                                className="level" 
+                                min="1"
+                                max="100" 
+                                value={level}
+                                onChange={(e) => dispatch(actionSetLevel(parseInt(e.target.value)))}
+                            />   
+                        </div>         
+                    </div>
                 </div>
-                <div className="class-level-container">
-                    <DropDown 
-                        value={classes}
-                        onChange={handleOnchangeClass}
-                        options={dataCharacter} 
-                    />
-                    <DropDown 
-                        value={hero}
-                        onChange={handleOnchangeHero}
-                        options={dataCharacter[indexHero].heros} 
-                    />
-                    <input 
-                    type="number" 
-                    placeholder="Level" 
-                    className="level" 
-                    min="1"
-                    max="100" 
-                    value={level}
-                    onChange={(e) => dispatch(actionSetLevel(parseInt(e.target.value)))}
-                    />
-                
+                <img className="hero-img" src={`./assets/logo/${classes}/${hero}.png`} />
+                <div className="action-buttons">
+                <button onClick={handleNewBuild}
+                        className="build-new"
+                        >
+                        <p>Nouveau build</p>
+                    </button>
+                    <button onClick={handleSaveBuild}
+                        className="build-save"
+                    >
+                        <p>Sauvegarder le build</p>
+                    </button>
+                    
                 </div>
-                <img src={`./assets/logo/${classes}/${hero}.png`} />
-                <button onClick={handleSaveBuild}
-                    className="build-save"
-                >
-                    <p>Sauvegarder le build</p>
-                </button>
-                <button onClick={handleNewBuild}>
-                    <p>Nouveau build</p>
-                </button>
             </section>
     );
 }
@@ -114,6 +133,7 @@ Info.propTypes = {
     indexHero: PropTypes.number.isRequired,
     updateIndexHero: PropTypes.func.isRequired,
     errorMessage: PropTypes.func.isRequired,
+    handleModal: PropTypes.func.isRequired,
 };
 
 Info.defaultProps = {

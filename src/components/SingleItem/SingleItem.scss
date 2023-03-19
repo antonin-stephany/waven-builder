@@ -1,5 +1,17 @@
 @use 'src/styles/vars' as v;
 
+@mixin menu-line {
+    content: '';
+    display: block;
+    margin-top: 5px;
+    height: 2px;
+    background-color: v.$color-tabs-active;
+    transition-property: left, right, width;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-out;
+    position: absolute;
+}
+
 .item{
     width: 50%;
     display: flex;
@@ -12,7 +24,7 @@
         background-color: v.$color-slot;
     }
     &-content{
-        padding: v.$gutter;
+        padding-left: v.$gutter;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -35,23 +47,59 @@
                 padding: 3px;
                 border-radius: v.$round;
                 color: v.$color-slot;
+                margin: 0 v.$gutter;
             }
         }
         &-container-carac{
             position: relative;
             &-tabs{
                 display: flex;
-                & .tab{
+                & .tab, .active-tab{
                     padding: 5px;
-                   border-bottom: 1px solid v.$color-tabs;
+                    position: relative;
+                    border-bottom: 1px solid v.$color-tabs;
                 }
-                & .active-tab{
-                    border-bottom: 2px solid v.$color-tabs-active;
+                & h4:first-of-type{
+                    &.active-tab{
+                        &::after {
+                            @include menu-line;
+                            left: 0%;
+                            right: 100%;
+                            width: 100%;
+                          }
+                    }
+                    &.tab{
+                        &::after {
+                            @include menu-line;
+                            left: 100%;
+                            right: 100%;
+                            width: 0%;
+                          }
+                    }
+                }
+                & h4:last-of-type{
+                    &.active-tab{
+                        &::after {
+                            @include menu-line;
+                            left: 0%;
+                            right: 100%;
+                            width: 100%;
+                          }
+                    }
+                    &.tab{
+                        &::after {
+                            @include menu-line;
+                            left: 0%;
+                            right: 0%;
+                            width: 0%;
+                          }
+                    }
                 }
             }
             & .content{
                 display: none;
-                padding: v.$gutter;
+                padding-top: v.$gutter/2;
+                min-height: 100px;
                 & div p{
                     line-height: 1.2em;
                 }

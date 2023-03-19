@@ -2,4 +2,89 @@
 
 .info{
     margin:v.$gutter;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height:320px;
+    &-container{
+        width: 335px;
+    }
+    & input, label select{
+        color: v.$color-background-title;
+        font-size: v.$font-input;
+        background-color: v.$color-background;
+        border: 0;
+        border-bottom: 1px solid v.$color-input;
+        height: 30px;
+        &::placeholder{
+            color: v.$color-input;
+        }
+    }
+    & label select{
+        cursor: pointer;
+        outline:0px;
+    }
+    .title-container, .others-infos-container{
+        width: 100%;
+        margin-bottom: v.$gutter;
+    }
+    .title{
+        width: 100%;
+        font-size: v.$font-title-build;
+        &:focus{
+            border-bottom: 1px solid v.$color-background-title; 
+        }
+    }
+    .level-container::before{
+        content:'Lvl.';
+        border-bottom: 1px solid v.$color-input;
+        line-height: 29px;
+        display: inline-block;
+        font-size: v.$font-input;
+    }
+}
+.others-infos-container{
+    display: flex;
+    justify-content: space-between;
+}
+.action-buttons{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    & button{
+        height: 40px;
+        border-radius: v.$round;
+        font-size: v.$font-input;
+        padding: 0 v.$gutter;
+        &.build-new{
+            border: 1px solid v.$color-input;
+            background-color: v.$color-background;
+            color: v.$color-background-title;
+            transition: 0.1s;
+            &:hover{
+                background-color: #eeeeee;
+                transform: scale(1.04);
+                transition: 0.1s;
+            }
+            &:active{
+                border: 1px solid v.$color-background-title;
+            }
+        }
+        &.build-save{
+            border: 1px solid v.$color-background-title;
+            background-color: v.$color-background-title;
+            color: v.$color-background;
+            transition: 0.1s;
+            &:hover{
+                background-color: #1d284b;
+                transform: scale(1.04);
+                transition: 0.1s;
+            }
+            &:active{
+                outline: 1px solid v.$color-background-title;
+                border: 1px solid #ffffff;
+            }
+        }
+    }
 }

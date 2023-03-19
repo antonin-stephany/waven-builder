@@ -16,7 +16,7 @@ function SingleSpell({ value, label, classes, description, gifts, cost, load, gi
   function addSpell(){
     const testSameSpell = spells.spells.find((spell) => spell.value === value);
     if (testSameSpell !== undefined) {
-      errorMessage("Vous avez déjà choisi ce sort");
+      errorMessage("Vous avez déjà choisi ce sort", "red");
       return;
     }
     //trouver un emplacememt de libre pour l'anneau

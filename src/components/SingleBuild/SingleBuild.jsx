@@ -5,11 +5,17 @@ import dataCharacter from '../../data/classes';
 import SingleBuildElement from "../SingleBuildElement/SingleBuildElement";
 import { useDispatch, useSelector } from "react-redux";
 import { actionDeleteBuild, actionSetBuild } from "../../actions/buildActions";
+import { compareCurrentAndSavedbuild } from '../../tools/compareArray';
 
-function SingleBuild({character, stuff, spells, index, updateBuildName, updateIndexHero}) {
+function SingleBuild({character, stuff, spells, index, updateBuildName, buildName,  updateIndexHero, handleModal}) {
   const itemTypes = ["ring","cuff","companion","spells"];
   const titleBuildSelected = useSelector((fullState) => fullState.allBuilds.savedBuilds[index].character.title) ?? '';
   const classesBuildSelected = useSelector((fullState) => fullState.allBuilds.savedBuilds[index].character.classes) ?? '';
+  const currentIdBuild = useSelector((fullState) => fullState.allBuilds.id);
+  const savedBuilds = useSelector((fullState) => fullState.allBuilds.savedBuilds);
+  const currentCharacter = useSelector((fullState) => fullState.allBuilds.character);
+  const currentSpells = useSelector((fullState) => fullState.allBuilds.spells);
+  const currentStuff = useSelector((fullState) => fullState.allBuilds.stuff);
 
 
   const dispatch = useDispatch();
@@ -18,17 +24,22 @@ function SingleBuild({character, stuff, spells, index, updateBuildName, updateIn
     dispatch(actionDeleteBuild(index));
   }
   function setBuild(index){
-    updateBuildName(titleBuildSelected);
-    const newIndex = dataCharacter.findIndex(element => element.value === classesBuildSelected);
-    updateIndexHero(newIndex);
-    dispatch(actionSetBuild(index));
+    let buildAlreadySaved = savedBuilds.find((build) => build.id === currentIdBuild);
+    if(compareCurrentAndSavedbuild(currentIdBuild, currentCharacter, currentSpells, currentStuff, buildAlreadySaved, buildName)){
+      updateBuildName(titleBuildSelected);
+      const newIndex = dataCharacter.findIndex(element => element.value === classesBuildSelected);
+      updateIndexHero(newIndex);
+      dispatch(actionSetBuild(index));
+    }else{
+        handleModal(true, "set-build", titleBuildSelected, classesBuildSelected, index);
+    }
     
   }
   return (
     <>
-      <div className="build-list" onClick={() => setBuild(index)}>
-        <img className="build-img-hero" src={`./assets/logo/${character.classes}/${character.hero}.png`} />
-        <div className="build-container">
+      <div className="build-list">
+        <img className="build-img-hero" src={`./assets/logo/${character.classes}/${character.hero}.png`} onClick={() => setBuild(index)}/>
+        <div className="build-container" onClick={() => setBuild(index)} >
             <h2>{character.title}</h2>
             <span>{character.level}</span>
             <div className="build-stuff">
@@ -55,6 +66,7 @@ function SingleBuild({character, stuff, spells, index, updateBuildName, updateIn
 }
 SingleBuild.propTypes = {
     updateBuildName: PropTypes.func.isRequired,
+    buildName: PropTypes.string.isRequired,
     updateIndexHero: PropTypes.func.isRequired,
     index : PropTypes.number.isRequired,
     character: PropTypes.shape({
@@ -69,6 +81,7 @@ SingleBuild.propTypes = {
           companion: PropTypes.array,
         }),
     spells: PropTypes.array,
+    handleModal: PropTypes.func.isRequired,
 };
 
 SingleBuild.defaultProps = {};

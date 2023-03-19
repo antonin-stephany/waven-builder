@@ -1,3 +1,5 @@
+@use 'src/styles/vars' as v;
+
 .build-stuff{
     display: flex;
 }
@@ -12,11 +14,13 @@
 }
 
 .cross-close-build{
+    pointer-events: auto;
     border: 0;
     background-color: red;
+    border-radius: v.$round;
     color: white;
     position: absolute;
-    padding: 0 4px;
+    padding: 2px 6px;
     z-index: 1;
     right: -8px;
     top: calc(0px + 2rem);
