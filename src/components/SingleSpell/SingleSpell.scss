@@ -51,7 +51,7 @@
         & h2{
             font-weight: bold;
             font-size: 1.3em;
-            padding-bottom: v.$gutter/2;
+            padding-bottom: calc(v.$gutter / 2);
         }
         & h3{
             z-index: 100;
@@ -60,8 +60,8 @@
             font-weight: bold;
         }
         &_description{
-            padding-bottom: v.$gutter/2;
-            height: 50px;
+            padding-bottom: calc(v.$gutter / 2);
+            height: 65px;
             opacity: 0;
             transition: 0.2s ease-out;
             &.active{
@@ -72,7 +72,7 @@
         &_gift-block{
             transition: 0.3s ease-out;
             &.active{
-                transform: translateY(-50px);
+                transform: translateY(-65px);
                 transition: 0.3s ease-out;
                 height: 22px; // h3 + gutter size 
             }
@@ -94,7 +94,7 @@
             height: 0px;
             opacity: 0;
             transition: 0.2s ease-out;
-            padding-top: v.$gutter/2;
+            padding-top: calc(v.$gutter / 2);
             &.active{
                 height: auto;
                 opacity: 1;

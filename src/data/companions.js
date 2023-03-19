@@ -4,6 +4,8 @@ export default [
         label: `Nugget`,
         description:'Aucun Effet',
         rare: 'Commun',
+        element: 'fire',
+        cost: 2,
         stats: [
             {
                 value: 52,
@@ -14,7 +16,7 @@ export default [
                 description:'Attaque',    
             },
             {
-                value: 5,
+                value: "5%",
                 description:'Coups Critiques',    
             },
             {
@@ -39,6 +41,8 @@ export default [
         label: `Championne Périmée`,
         description:'ATTAQUE : -1 PA au coût du premier sort de votre main.',
         rare: 'Commun',
+        element: 'fire',
+        cost: 3,
         stats: [
             {
                 value: 66,
@@ -49,7 +53,7 @@ export default [
                 description:'Attaque',    
             },
             {
-                value: 5,
+                value: "5%",
                 description:'Coups Critiques',    
             },
             {
@@ -75,6 +79,8 @@ export default [
         label: `Dargone`,
         description:'ATTAQUE : +1 AURA COEUR DE FLAMME.',
         rare: 'Commun',
+        element: 'fire',
+        cost: 3,
         stats: [
             {
                 value: 65,
@@ -85,7 +91,7 @@ export default [
                 description:'Attaque',    
             },
             {
-                value: 5,
+                value: "5%",
                 description:'Coups Critiques',    
             },
             {
@@ -110,6 +116,8 @@ export default [
         label: `Hendo`,
         description:'ATTAQUE : +100% de dégâts si la cible est HUILÉE.',
         rare: 'Commun',
+        element: 'fire',
+        cost: 3,
         stats: [
             {
                 value: 63,
@@ -120,7 +128,7 @@ export default [
                 description:'Attaque',    
             },
             {
-                value: 5,
+                value: "5%",
                 description:'Coups Critiques',    
             },
             {
@@ -145,6 +153,8 @@ export default [
         label: `Maître Egreneur`,
         description:'ATTAQUE : -2 PA au coût du prochain sort de MÉCANISME ou de PIÈGE que vous jouez.',
         rare: 'Commun',
+        element: 'fire',
+        cost: 3,
         stats: [
             {
                 value: 58,
@@ -155,7 +165,7 @@ export default [
                 description:'Attaque',    
             },
             {
-                value: 5,
+                value: "5%",
                 description:'Coups Critiques',    
             },
             {
@@ -181,6 +191,8 @@ export default [
         label: `Sentinelle Affutée`,
         description:'ATTAQUE : +1 jauge FEU.',
         rare: 'Commun',
+        element: 'fire',
+        cost: 3,
         stats: [
             {
                 value: 65,
@@ -191,7 +203,7 @@ export default [
                 description:'Attaque',    
             },
             {
-                value: 5,
+                value: "5%",
                 description:'Coups Critiques',    
             },
             {
@@ -216,6 +228,8 @@ export default [
         label: `Skhul`,
         description:`ATTAQUE : -25% d'AT à la cible pour le tour.`,
         rare: 'Commun',
+        element: 'fire',
+        cost: 3,
         stats: [
             {
                 value: 60,
@@ -226,7 +240,7 @@ export default [
                 description:'Attaque',    
             },
             {
-                value: 5,
+                value: "5%",
                 description:'Coups Critiques',    
             },
             {
