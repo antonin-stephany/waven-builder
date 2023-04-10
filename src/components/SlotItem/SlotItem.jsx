@@ -19,7 +19,7 @@ function SlotItem({ openModal, type }) {
           className={`stuff-${type}-slot`}
           onClick={() => openModal(type, i)}
         >
-          {!!item.value && (
+          {item.value ? (
             <>
               <img src={`./assets/${type}/${item.value}.png`} />
               <button
@@ -29,6 +29,8 @@ function SlotItem({ openModal, type }) {
                 className="delete-item"
               ></button>
             </>
+          ) : (
+            <img src={`./assets/${type}/default.png`} />
           )}
         </div>
       ))}

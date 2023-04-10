@@ -6,6 +6,7 @@ import {
   actionSaveBuild,
   actionSaveAgainBuild,
   actionNewBuild,
+  actionDeleteBuild,
 } from '../../actions/buildActions';
 import { actionSetBuild } from '../../actions/buildActions';
 import dataCharacter from '../../data/classes';
@@ -57,41 +58,86 @@ function Modal({
     handleNewBuild();
     setBuild(index);
   }
+  function handleDeleteBuild(index) {
+    errorMessage('Build supprimé !', 'green');
+    dispatch(actionDeleteBuild(index));
+    handleModal(false, '', '', '', null);
+  }
+  function handleDontDeleteBuild() {
+    handleModal(false, '', '', '', null);
+  }
+  let actionButtonsModal;
+  switch (modalType) {
+    case 'new-build':
+      actionButtonsModal = (
+        <>
+          <button onClick={handleNewBuild} className="build-new">
+            Non ça ira
+          </button>
+          <button onClick={handleSaveBuild} className="build-save">
+            Sauvegarder le build
+          </button>
+        </>
+      );
+      break;
+    case 'set-build':
+      actionButtonsModal = (
+        <>
+          <button
+            onClick={() => handleNewAndSetBuild(index)}
+            className="build-new"
+          >
+            Non ça ira
+          </button>
+          <button
+            onClick={() => handleSaveAndSetBuid(index)}
+            className="build-save"
+          >
+            Sauvegarder le build
+          </button>
+        </>
+      );
+      break;
+    case 'delete-build':
+      actionButtonsModal = (
+        <>
+          <button
+            onClick={() => handleDontDeleteBuild(index)}
+            className="build-new"
+          >
+            Annuler
+          </button>
+          <button
+            onClick={() => handleDeleteBuild(index)}
+            className="build-save"
+          >
+            Supprimer le build
+          </button>
+        </>
+      );
+      break;
+  }
   return (
     <div className="background-modal">
       <div className="modal-container">
-        <h3>Veux-tu sauvegarder ce build ?</h3>
-        <p>
-          Les changements sur ton build actuel n&apos;ont pas encore été
-          sauvegardé. Veux-tu les enregistrer ?{' '}
-        </p>
-        <div className="action-buttons">
-          {modalType === 'new-build' ? (
-            <>
-              <button onClick={handleNewBuild} className="build-new">
-                Non ça ira
-              </button>
-              <button onClick={handleSaveBuild} className="build-save">
-                Sauvegarder le build
-              </button>
-            </>
-          ) : (
-            <>
-              <button
-                onClick={() => handleNewAndSetBuild(index)}
-                className="build-new"
-              >
-                Non ça ira
-              </button>
-              <button
-                onClick={() => handleSaveAndSetBuid(index)}
-                className="build-save"
-              >
-                Sauvegarder le build
-              </button>
-            </>
-          )}
-        </div>
+        {modalType === 'delete-build' ? (
+          <>
+            <h3>Veux-tu supprimer ce build ?</h3>
+            <p>
+              Tu ne pourras pas le récupérer. Es-tu vraiment sûr de vouloir
+              supprimer ce build ?
+            </p>
+          </>
+        ) : (
+          <>
+            <h3>Veux-tu sauvegarder ce build ?</h3>
+            <p>
+              Les changements sur ton build actuel n&apos;ont pas encore été
+              sauvegardé. Veux-tu les enregistrer ?
+            </p>
+          </>
+        )}
+        <div className="action-buttons">{actionButtonsModal}</div>
         <button
           onClick={() => handleModal(false, '', '', '', null)}
           className="cross-close-modal"

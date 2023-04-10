@@ -12,7 +12,7 @@ function SingleSpellSlot({ value, index, openModal, classes }) {
   }
   return (
     <div className="spell-slot" onClick={() => openModal('spell', index)}>
-      {!!value && (
+      {value ? (
         <>
           <img src={`./assets/spell/${classes}/${value}.png`} />
           <button
@@ -22,6 +22,8 @@ function SingleSpellSlot({ value, index, openModal, classes }) {
             className="delete-spell"
           ></button>
         </>
+      ) : (
+        <img src={`./assets/spell/assets/default.png`} />
       )}
     </div>
   );

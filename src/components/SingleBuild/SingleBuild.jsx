@@ -4,7 +4,7 @@ import './SingleBuild.scss';
 import dataCharacter from '../../data/classes';
 import SingleBuildElement from '../SingleBuildElement/SingleBuildElement';
 import { useDispatch, useSelector } from 'react-redux';
-import { actionDeleteBuild, actionSetBuild } from '../../actions/buildActions';
+import { actionSetBuild } from '../../actions/buildActions';
 import { compareCurrentAndSavedbuild } from '../../tools/compareArray';
 
 function SingleBuild({
@@ -37,9 +37,8 @@ function SingleBuild({
   const currentStuff = useSelector((fullState) => fullState.allBuilds.stuff);
 
   const dispatch = useDispatch();
-  function deleteBuild(event, index) {
-    event.stopPropagation();
-    dispatch(actionDeleteBuild(index));
+  function deleteBuild() {
+    handleModal(true, 'delete-build', '', '', index);
   }
   function setBuild(index) {
     let buildAlreadySaved = savedBuilds.find(
