@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/waven-builder/static/css/main.49f43d67.css",
+    "main.js": "/waven-builder/static/js/main.1e05102c.js",
+    "static/js/787.aaf7e7b4.chunk.js": "/waven-builder/static/js/787.aaf7e7b4.chunk.js",
+    "index.html": "/waven-builder/index.html",
+    "main.49f43d67.css.map": "/waven-builder/static/css/main.49f43d67.css.map",
+    "main.1e05102c.js.map": "/waven-builder/static/js/main.1e05102c.js.map",
+    "787.aaf7e7b4.chunk.js.map": "/waven-builder/static/js/787.aaf7e7b4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.49f43d67.css",
+    "static/js/main.1e05102c.js"
+  ]
+}
