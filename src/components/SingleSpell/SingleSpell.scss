@@ -63,7 +63,7 @@
     }
     &_description {
       padding-bottom: calc(v.$gutter / 2);
-      height: 65px;
+      height: 100px;
       opacity: 0;
       transition: 0.2s ease-out;
       &.active {
@@ -74,9 +74,9 @@
     &_gift-block {
       transition: 0.3s ease-out;
       &.active {
-        transform: translateY(-65px);
+        transform: translateY(-100px);
         transition: 0.3s ease-out;
-        height: 22px; // h3 + gutter size
+        height: 27px; // h3 + gutter size
       }
       & .arrow {
         border: solid black;
@@ -103,5 +103,14 @@
         transition: 0.2s ease-out;
       }
     }
+  }
+}
+
+@media (min-width: 1535px) {
+  .spell-content_description {
+    height: 65px;
+  }
+  .spell-content_gift-block.active {
+    transform: translateY(-65px);
   }
 }
