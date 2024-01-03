@@ -4,7 +4,6 @@ Waven Builder is a tool that helps you to create a set of equipments for you cha
 
 URL : [(https://antonin-stephany.github.io/waven-builder/)](https://antonin-stephany.github.io/waven-builder/)
 
-<img src="./public/mockup.png" alt="threejs">
 
 ## 🛠 Stack
 
